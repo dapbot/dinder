@@ -25,7 +25,7 @@ function setGeoCookie(position) {
 		var refresh=true;
 	}
   var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
-  $.cookie("lat_lng", cookie_val, { path: '/' });
+  $.cookie("lat_lng", cookie_val, { expires: 1, path: '/' });
   if (refresh){
   	Location.reload();
   }

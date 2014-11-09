@@ -5,6 +5,7 @@
 <%- end %>
 
 <div class="container">
+	Your location is: <%= link_to @lat_lng.to_s, "https://www.google.com.au/maps/preview/@" + @lat_lng[0] + "," + @lat_lng[1] + ",17z" %>
 	<% if @lat_lng %>
 		<div class="panel panel-primary">
 			<div class="panel-heading">

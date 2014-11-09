@@ -73,7 +73,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.refresh_opening_hours
-    where("opening_hours_last_fetched < ? or opening_hours_last_fetched is null", Time.now - 14.days).each do |restaurant|
+    where("opening_hours_last_fetched < ? or opening_hours_last_fetched is null", Time.zone.now - 14.days).each do |restaurant|
       restaurant.get_opening_periods
     end
   end
@@ -129,6 +129,6 @@ class Restaurant < ActiveRecord::Base
     suburb[/[^,]+/]
   end
 
-  scope :open_now, lambda{ where('EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.restaurant_id = restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)', current_time: (Time.now.wday * 24 * 60 + Time.now.hour * 60 + Time.now.min)) }
+  scope :open_now, lambda{ where('EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.restaurant_id = restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)', current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
 
 end

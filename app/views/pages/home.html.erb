@@ -1,0 +1,30 @@
+<%- unless @lat_lng %>
+<script>
+  getGeoLocation();
+</script>
+<%- end %>
+
+<div class="container">
+	<% if @lat_lng %>
+		<% @restaurants.each do |restaurant| %>
+			<div class="restaurant panel panel-default">
+				<div class="name panel-heading">
+					<div class="left">
+						<%= restaurant.name %>
+					</div>
+					<div class="right">
+						<%= '%.1f' % restaurant.distance_to( @lat_lng ) %> km away
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="panel-body">
+					<% if restaurant.phone_number %>
+						<button type="button" class="btn btn-default btn-lg">
+						  <a href="tel:<%= restaurant.phone_number %>"><span class="fa fa-phone"></span></a>
+						</button>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>

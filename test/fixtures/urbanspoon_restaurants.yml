@@ -1,0 +1,47 @@
+# == Schema Information
+#
+# Table name: urbanspoon_restaurants
+#
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  suburb        :string(255)
+#  address       :text
+#  latitude      :float
+#  longitude     :float
+#  rating        :integer
+#  url           :string(255)
+#  price         :integer
+#  urbanspoon_id :string(255)
+#  phone_number  :string(255)
+#  website       :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  suburb: MyString
+  address: MyText
+  latitude: 1.5
+  longitude: 1.5
+  rating: 1
+  url: MyString
+  price: 1
+  urbanspoon_id: MyString
+  phone_number: MyString
+  website: MyString
+
+two:
+  name: MyString
+  suburb: MyString
+  address: MyText
+  latitude: 1.5
+  longitude: 1.5
+  rating: 1
+  url: MyString
+  price: 1
+  urbanspoon_id: MyString
+  phone_number: MyString
+  website: MyString

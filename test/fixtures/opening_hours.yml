@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: opening_hours
+#
+#  id            :integer          not null, primary key
+#  restaurant_id :integer
+#  day           :integer
+#  opens_at      :integer
+#  open_duration :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 1
+  day: 1
+  opens_at: 1
+  open_duration: 1
+
+two:
+  restaurant_id: 1
+  day: 1
+  opens_at: 1
+  open_duration: 1

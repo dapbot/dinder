@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 			  @lat_lng = cookies[:lat_lng].split("|") if cookies[:lat_lng]
 			end
 		  if @lat_lng
-		  	@restaurants = Restaurant.open_now.near(@lat_lng, 1)
+		  	@restaurants = Restaurant.open_now.near(@lat_lng, 2)
 		  end
 	end
 end

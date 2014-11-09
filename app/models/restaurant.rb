@@ -29,6 +29,7 @@ class Restaurant < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
 
   def self.import_from_urbanspoon(start_page, end_page)
+    #Last page is 719
     agent = Mechanize.new
     agent.keep_alive = false
     agent.user_agent = "Mozilla/5.0 (Windows; U; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"

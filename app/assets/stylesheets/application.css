@@ -29,3 +29,22 @@
 .underline {
 	text-decoration:underline;
 }
+
+.restaurant .name .left {
+	font-weight: bold;
+}
+
+.price .highlight {
+	color: #e78f02;
+}
+.price {
+	color: #ddd;
+}
+
+.restaurant .buttons span {
+	margin-right: 5px;
+}
+
+.restaurant .buttons button {
+		margin-top: 5px;
+}

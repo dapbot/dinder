@@ -13,11 +13,11 @@
 				<div class="left">
 					Food <span class="underline">in walking distance</span> & <span class="underline">open now</span>.
 				</div>
-				<div class="right">
+<!-- 				<div class="right">
 					<button type="button" class="btn btn-default btn-sm">
 					  <a href="#"><span class="fa fa-edit"></span></a>
 					</button>		
-				</div>
+				</div> -->
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -28,16 +28,32 @@
 						<%= restaurant.name %>
 					</div>
 					<div class="right">
-						<%= '%.1f' % restaurant.distance_to( @lat_lng ) %> km away
+						<%= '%.1f' % restaurant.distance_to( @lat_lng ) %> km
 					</div>
 					<div class="clear"></div>
 				</div>
 				<div class="panel-body">
-					<% if restaurant.phone_number %>
-						<button type="button" class="btn btn-default btn-lg">
-						  <a href="tel:<%= restaurant.phone_number %>"><span class="fa fa-phone"></span></a>
-						</button>
-					<% end %>
+					<div class="details">
+						<span class="price"><span class="highlight"><%= "$" * restaurant.price %></span><%= "$" * (4 - restaurant.price) %></span> <%= restaurant.tags.map(&:name).join(", ") %>
+					</div>
+					<div class="buttons">
+						<% if restaurant.price > 2 %>
+							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Cheaper</button>
+						<% end %>
+						<% if restaurant.price < 2 %>
+							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Fancier</button>
+						<% end %>
+						<% if restaurant.tags.count > 0 %>
+							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not <%= restaurant.tags.first.name %></button>
+						<% end %>
+						<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not my thing</button>
+						<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not tonight</button>
+						<% if restaurant.phone_number %>
+<!-- 							<button type="button" class="btn btn-default btn-lg">
+							  <a href="tel:<%= restaurant.phone_number %>"><span class="fa fa-phone"></span></a>
+							</button>
+ -->						<% end %>
+					</div>
 				</div>
 			</div>
 		<% end %>

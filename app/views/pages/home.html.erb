@@ -6,11 +6,12 @@
 
 <div class="container">
 	<% if @lat_lng %>
-		Your location is: <%= link_to @lat_lng.to_s, "https://www.google.com.au/maps/preview/@" + @lat_lng[0] + "," + @lat_lng[1] + ",17z" %>
-		<div class="panel panel-primary">
+<!-- 		Your location is: <%= link_to @lat_lng.to_s, "https://www.google.com.au/maps/preview/@" + @lat_lng[0] + "," + @lat_lng[1] + ",17z" %>
+ -->		
+ 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="left">
-					Restaurants <span class="underline">in walking distance</span> <span class="underline">open right now</span>.
+					Food <span class="underline">in walking distance</span> & <span class="underline">open now</span>.
 				</div>
 				<div class="right">
 					<button type="button" class="btn btn-default btn-sm">

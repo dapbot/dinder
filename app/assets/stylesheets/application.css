@@ -25,3 +25,7 @@
  .clear {
  	clear:both;
  }
+
+.underline {
+	text-decoration:underline;
+}

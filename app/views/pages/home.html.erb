@@ -6,6 +6,19 @@
 
 <div class="container">
 	<% if @lat_lng %>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="left">
+					Restaurants <span class="underline">in walking distance</span> <span class="underline">open right now</span>.
+				</div>
+				<div class="right">
+					<button type="button" class="btn btn-default btn-sm">
+					  <a href="#"><span class="fa fa-edit"></span></a>
+					</button>		
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
 		<% @restaurants.each do |restaurant| %>
 			<div class="restaurant panel panel-default">
 				<div class="name panel-heading">

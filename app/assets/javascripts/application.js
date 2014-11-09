@@ -21,12 +21,10 @@ function getGeoLocation() {
 }
 
 function setGeoCookie(position) {
-	if ($.cookie("lat_lng") == false){
-		var refresh=true;
-	}
   var cookie_val = position.coords.latitude + "|" + position.coords.longitude;
-  $.cookie("lat_lng", cookie_val, { expires: 1, path: '/' });
-  if (refresh){
-  	Location.reload();
-  }
+   var date = new Date();
+	 var minutes = 10;
+	 date.setTime(date.getTime() + (minutes * 60 * 1000));
+  $.cookie("lat_lng", cookie_val, { expires: date, path: '/' });
+	location.reload();
 }

@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#home'
 
+
+  resources :restaurant_tags, :only => :index
+  resources :tags, :only => :index
+  resources :opening_periods, :only => :index
+  resources :searches, :only => :index
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

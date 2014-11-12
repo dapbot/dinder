@@ -9,14 +9,16 @@
 #  latitude                   :float
 #  longitude                  :float
 #  rating                     :integer
-#  url                        :string(255)
+#  url                        :text
 #  price                      :integer
 #  urbanspoon_id              :string(255)
 #  phone_number               :string(255)
-#  website                    :string(255)
+#  website                    :text
 #  created_at                 :datetime
 #  updated_at                 :datetime
 #  opening_hours_last_fetched :datetime
+#  google_place_id            :string(255)
+#  urbanspoon_ranking         :integer
 #
 
 class Restaurant < ActiveRecord::Base

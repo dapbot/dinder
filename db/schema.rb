@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109010022) do
+ActiveRecord::Schema.define(version: 20141111070540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20141109010022) do
     t.datetime "updated_at"
     t.datetime "opening_hours_last_fetched"
     t.string   "google_place_id"
+    t.integer  "urbanspoon_ranking"
+  end
+
+  create_table "searches", force: true do |t|
+    t.boolean  "open_now"
+    t.datetime "open_at"
+    t.string   "lat_lng"
+    t.integer  "cheaper_than"
+    t.integer  "fancier_than"
+    t.text     "not_cuisines", default: [], array: true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|

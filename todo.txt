@@ -1,0 +1,4 @@
+Improve sorting mechanism
+Grab Yelp 'noise' and 'reservations' and 'environments'
+Store Google ID
+Grab photo

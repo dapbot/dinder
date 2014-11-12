@@ -11,7 +11,12 @@
  		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<div class="left">
-					Food <span class="underline">in walking distance</span> & <span class="underline">open now</span>.
+					Food <span class="underline">in walking distance</span> & <span class="underline">open now</span>
+						<%= ("& <span class='underline'> cheaper than " + ("$" * @search.cheaper_than) + "</span>").html_safe if @search.cheaper_than %>
+						<%= ("& <span class='underline'> more expensive than " + ("$" * @search.fancier_than) + "</span>").html_safe if @search.fancier_than %>
+						<% @search.not_cuisines.each do |not_cuisine| %>
+							<%= ("& <span class='underline'> not " + not_cuisine + "</span>").html_safe %>
+						<% end %>
 				</div>
 <!-- 				<div class="right">
 					<button type="button" class="btn btn-default btn-sm">
@@ -38,21 +43,22 @@
 					</div>
 					<div class="buttons">
 						<% if restaurant.price > 2 %>
-							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Cheaper</button>
+								<%= link_to content_tag(:span, "", class: "fa fa-times") + "Too pricey", root_path(@search.params.merge({cheaper_than: restaurant.price})), class: "btn btn-sm btn-danger" %>
 						<% end %>
-						<% if restaurant.price < 2 %>
-							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Fancier</button>
+						<% if restaurant.price <= 2 %>
+								<%= link_to content_tag(:span, "", class: "fa fa-times") + "Too cheap", root_path(@search.params.merge({fancier_than: restaurant.price})), class: "btn btn-sm btn-danger" %>
 						<% end %>
 						<% if restaurant.tags.count > 0 %>
-							<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not <%= restaurant.tags.first.name %></button>
+							<%= link_to content_tag(:span, "", class: "fa fa-times") + "Not " + restaurant.tags.first.name.underscore, root_path(@search.params.merge({("not_c_" + restaurant.tags.first.name.underscore).to_sym => true})), class: "btn btn-sm btn-danger" %>
 						<% end %>
-						<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not my thing</button>
-						<button type="button" class="btn btn-sm btn-danger"><span class="fa fa-times"> </span>Not tonight</button>
+						<% if restaurant.tags.count > 1 %>
+							<%= link_to content_tag(:span, "", class: "fa fa-times") + "Not " + restaurant.tags.second.name.underscore, root_path(@search.params.merge({("not_c_" + restaurant.tags.second.name.underscore).to_sym => true})), class: "btn btn-sm btn-danger" %>
+						<% end %>
 						<% if restaurant.phone_number %>
 <!-- 							<button type="button" class="btn btn-default btn-lg">
 							  <a href="tel:<%= restaurant.phone_number %>"><span class="fa fa-phone"></span></a>
 							</button>
- -->						<% end %>
+ -->				<% end %>
 					</div>
 				</div>
 			</div>

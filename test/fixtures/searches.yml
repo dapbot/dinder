@@ -1,0 +1,33 @@
+# == Schema Information
+#
+# Table name: searches
+#
+#  id           :integer          not null, primary key
+#  open_now     :boolean
+#  open_at      :datetime
+#  lat_lng      :string(255)
+#  cheaper_than :integer
+#  fancier_than :integer
+#  not_cuisines :text             default([]), is an Array
+#  user_id      :integer
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  open_now: false
+  open_at: 2014-11-11 18:05:40
+  lat_lng: MyString
+  cheaper_than: 1
+  fancier_than: 1
+  not_cuisines: 
+
+two:
+  open_now: false
+  open_at: 2014-11-11 18:05:40
+  lat_lng: MyString
+  cheaper_than: 1
+  fancier_than: 1
+  not_cuisines: 

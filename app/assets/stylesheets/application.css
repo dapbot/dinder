@@ -12,7 +12,13 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery.swipeshow
  */
+
+ .container {
+ 	top: 0px;
+ 	bottom: 0px;
+ }
 
  .left {
  	float:left;
@@ -30,6 +36,24 @@
 	text-decoration:underline;
 }
 
+.restaurant {
+	position: absolute;
+	top: 10px;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
+	margin: 0px 0px 50px 0px;
+}
+
+.footer-panel {
+	position: absolute;
+	height: 50px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+}
+
 .restaurant .name .left {
 	font-weight: bold;
 }
@@ -41,10 +65,68 @@
 	color: #ddd;
 }
 
-.restaurant .buttons span {
+/*.footer-panel span {
 	margin-right: 5px;
 }
-
-.restaurant .buttons a {
-		margin-top: 5px;
+*/
+.footer-panel a {
+	width: 80px;
 }
+
+.footer-panel a, .footer-panel a:visited {
+	color: #fff;
+}
+
+.details .form-control[disabled] {
+	background: #fff;
+}
+
+.details .form-control {
+	width: 225px;
+	font-size: 11px;
+	text-align:  left;
+	padding: 8px 4px;
+}
+
+.details .input-group {
+	margin-top: 8px;
+}
+
+.my-gallery {
+  width: 250px !important;
+  height: 250px !important; 
+}
+
+.my-gallery img {
+	width: 250px;
+	height: 250px;
+}
+
+.restaurant .description {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.restaurant .details .scores {
+	margin-top: 10px;
+}
+
+.restaurant .details .scores .row {
+	float:left;
+	margin: 0;
+	width: 133px;
+}
+
+.restaurant .details .scores img {
+	width: 32px;
+	height: 32px;
+	float:left;
+	margin-right: 8px;
+}
+
+.restaurant .details .scores .progress {
+	float:left;
+	width: 85px;
+	margin: 4px 0px;
+}
+

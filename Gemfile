@@ -5,6 +5,9 @@ gem 'nokogiri'
 gem 'mechanize'
 gem 'google_places'
 gem 'geocoder'
+gem 'will_paginate'
+gem 'jquery_mobile_rails'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

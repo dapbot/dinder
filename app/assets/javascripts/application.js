@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.swipeshow.min
 //= require turbolinks
 //= require_tree .
 
@@ -28,3 +29,7 @@ function setGeoCookie(position) {
   $.cookie("lat_lng", cookie_val, { expires: date, path: '/' });
 	location.reload();
 }
+
+$(function() {
+  $(".my-gallery").swipeshow();
+});

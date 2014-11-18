@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lat_lng: MyString
+  no_restaurants: MyText
+  yes_restaurants: MyText
+  session_id: MyString
+
+two:
+  lat_lng: MyString
+  no_restaurants: MyText
+  yes_restaurants: MyText
+  session_id: MyString

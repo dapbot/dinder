@@ -12,11 +12,11 @@
 class RestaurantTag < ActiveRecord::Base
 
   belongs_to :tag
-  belongs_to :restaurant
+  belongs_to :taggable, polymorphic: true
 
   validates_presence_of :tag_id
-  validates_presence_of :restaurant_id
-  validates_uniqueness_of :tag_id, :scope => :restaurant_id
+  validates_presence_of :taggable_id
+  validates_uniqueness_of :tag_id, :scope => :taggable_id
 
   def self.to_csv
     CSV.generate do |csv|

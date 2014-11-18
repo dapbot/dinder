@@ -5,13 +5,19 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#home'
+  root 'pages#dinder'
+  get 'old_search', to: 'pages#home'
 
 
   resources :restaurant_tags, :only => :index
   resources :tags, :only => :index
   resources :opening_periods, :only => :index
   resources :searches, :only => :index
+  resources :dinder_searches do
+    member do
+      put 'add_no'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

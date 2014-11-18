@@ -1,7 +1,17 @@
 <%- model_class = Restaurant -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <%= form_tag restaurants_path, :method => 'get', :id => "restaurants_search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= will_paginate @products %>
+  <% end %>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,6 +28,20 @@
       <th><%= model_class.human_attribute_name(:phone_number) %></th>
       <th><%= model_class.human_attribute_name(:website) %></th>
       <th><%= model_class.human_attribute_name(:opening_hours_last_fetched) %></th>
+      <th><%= model_class.human_attribute_name(:google_place_id) %></th>
+      <th><%= model_class.human_attribute_name(:urbanspoon_ranking) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_price) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_take_away) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_good_for_groups) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_good_for_children) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_noise_level) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_alcohol) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_reservations) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_ambience) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_score) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_photo_url) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_business_id) %></th>
+      <th><%= model_class.human_attribute_name(:yelp_last_fetched) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -38,7 +62,21 @@
         <td><%= restaurant.phone_number %></td>
         <td><%= restaurant.website %></td>
         <td><%= restaurant.opening_hours_last_fetched %></td>
-        <td><%= restaurant.created_at %></td>
+        <td><%= restaurant.google_place_id %></td>
+        <td><%= restaurant.urbanspoon_ranking %></td>
+        <td><%= restaurant.yelp_price %></td>
+        <td><%= restaurant.yelp_take_away %></td>
+        <td><%= restaurant.yelp_good_for_groups %></td>
+        <td><%= restaurant.yelp_good_for_children %></td>
+        <td><%= restaurant.yelp_noise_level %></td>
+        <td><%= restaurant.yelp_alcohol %></td>
+        <td><%= restaurant.yelp_reservations %></td>
+        <td><%= restaurant.yelp_ambience %></td>
+        <td><%= restaurant.yelp_score %></td>
+        <td><%= restaurant.yelp_photo_url %></td>
+        <td><%= restaurant.yelp_business_id %></td>
+        <td><%= restaurant.yelp_last_fetched %></td>
+        <td><%=l restaurant.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_restaurant_path(restaurant), :class => 'btn btn-default btn-xs' %>

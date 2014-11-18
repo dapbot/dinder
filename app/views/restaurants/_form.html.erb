@@ -99,6 +99,104 @@
     </div>
     <%= error_span(@restaurant[:opening_hours_last_fetched]) %>
   </div>
+  <div class="control-group">
+    <%= f.label :google_place_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :google_place_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:google_place_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :urbanspoon_ranking, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :urbanspoon_ranking, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:urbanspoon_ranking]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_price, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_price]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_take_away, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_take_away, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_take_away]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_good_for_groups, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_good_for_groups, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_good_for_groups]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_good_for_children, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_good_for_children, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_good_for_children]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_noise_level, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_noise_level, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_noise_level]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_alcohol, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_alcohol, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_alcohol]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_reservations, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_reservations, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_reservations]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_ambience, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_ambience, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_ambience]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_score, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_score]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_photo_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_photo_url, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_photo_url]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_business_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_business_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_business_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :yelp_last_fetched, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :yelp_last_fetched, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:yelp_last_fetched]) %>
+  </div>
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>

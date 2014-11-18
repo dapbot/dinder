@@ -1,0 +1,23 @@
+<h1>Listing dinder_searches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dinder_searches.each do |dinder_search| %>
+      <tr>
+        <td><%= link_to 'Show', dinder_search %></td>
+        <td><%= link_to 'Edit', edit_dinder_search_path(dinder_search) %></td>
+        <td><%= link_to 'Destroy', dinder_search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dinder search', new_dinder_search_path %>

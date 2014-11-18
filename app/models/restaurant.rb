@@ -19,16 +19,33 @@
 #  opening_hours_last_fetched :datetime
 #  google_place_id            :string(255)
 #  urbanspoon_ranking         :integer
+#  yelp_price                 :integer
+#  yelp_take_away             :boolean
+#  yelp_good_for_groups       :boolean
+#  yelp_good_for_children     :boolean
+#  yelp_noise_level           :integer
+#  yelp_alcohol               :string(255)
+#  yelp_reservations          :boolean
+#  yelp_ambience              :string(255)
+#  yelp_score                 :float
+#  yelp_review_count          :integer
+#  yelp_photo_url             :text
 #
 
 class Restaurant < ActiveRecord::Base
 
-  has_many :restaurant_tags
+  has_many :restaurant_tags, as: :taggable
   has_many :tags, :through => :restaurant_tags
 
-  has_many :opening_periods
+  has_many :opening_periods, as: :openable
 
   reverse_geocoded_by :latitude, :longitude
+
+  def post_code
+    postcode = address.match(/[0-9]{4}/)
+    postcode = postcode.nil? ? "" : postcode[-1]
+    postcode
+  end
 
   def self.import_from_urbanspoon(start_page, end_page)
     #Last page is 719
@@ -47,7 +64,7 @@ class Restaurant < ActiveRecord::Base
         restaurant = self.find_or_initialize_by(urbanspoon_id: restaurant_urbanspoon_id)
 
         #Add listing details
-        restaurant.name = listing.search("div.title > a").text
+        restaurant.name = ActiveSupport::Inflector.transliterate(listing.search("div.title > a").text)
         restaurant.suburb = listing.search("div.info > span.neighborhood").text.gsub(/\A(\s)+/, '').gsub(/(\s)+\z/, '')
         restaurant.rating = listing.search("div.title > span").text[0..1].to_i
         restaurant.url = "http://www.urbanspoon.com" + listing.search("div.title > a").first["href"]
@@ -75,13 +92,7 @@ class Restaurant < ActiveRecord::Base
     end
   end
 
-  def self.refresh_opening_hours
-    where("opening_hours_last_fetched < ? or opening_hours_last_fetched is null", Time.zone.now - 14.days).each do |restaurant|
-      restaurant.get_opening_periods
-    end
-  end
-
-  def get_opening_periods
+    def get_opening_periods
     google_info = self.find_on_google_places
     if google_info && google_info.opening_hours
       if google_info.opening_hours["periods"].count > 0
@@ -108,18 +119,15 @@ class Restaurant < ActiveRecord::Base
     update_attributes(:opening_hours_last_fetched => Time.now)
   end
 
-  def self.urbanspoon_page_url(page_number)
-    "http://www.urbanspoon.com/lb/70/best-restaurants-Sydney?page=#{page_number}"
+
+  def self.refresh_opening_hours
+    where("opening_hours_last_fetched < ? or opening_hours_last_fetched is null", Time.zone.now - 14.days).each do |restaurant|
+      restaurant.get_opening_periods
+    end
   end
 
-  def find_on_yelp
-    agent = Mechanize.new
-    agent.keep_alive = false
-    agent.user_agent = "Mozilla/5.0 (Windows; U; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"
-    agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    search_results = agent.get "http://www.yelp.com.au/search?find_desc=" + name.gsub(/[^A-Za-z0-9 ]/, "").gsub(/\s+/, "-") + "&find_loc=" + short_suburb.gsub(/[^A-Za-z0-9 ]/, "").gsub(/\s+/, "-") + "+Sydney+New+South+Wales&ns=1"
-    biz_id = search_results.search("span.indexed-biz-name > a")[0]["href"][/[^?]+/][5..-1]
-    puts biz_id
+  def self.urbanspoon_page_url(page_number)
+    "http://www.urbanspoon.com/lb/70/best-restaurants-Sydney?page=#{page_number}"
   end
 
   def find_on_google_places
@@ -129,10 +137,18 @@ class Restaurant < ActiveRecord::Base
   end
 
   def short_suburb
-    suburb[/[^,]+/]
+    suburb[/[^,]+$/].strip
   end
 
-  scope :open_now, lambda{ where('EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.restaurant_id = restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)', current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
+  scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'Restaurant' and opening_periods.openable_id = restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)", current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
+
+  def self.search(search)
+    if search
+      where('lower(name) LIKE ?', "%#{search.downcase}%")
+    else
+      where(nil)
+    end
+  end
 
   def self.to_csv
     CSV.generate do |csv|

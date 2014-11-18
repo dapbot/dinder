@@ -4,7 +4,10 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 20, :page => params[:page])
+    @sort_column = sort_column
+    @sort_direction = sort_direction
+
     respond_to do |format|
       format.html
       format.csv { send_data Restaurant.to_csv }
@@ -73,6 +76,14 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :suburb, :address, :latitude, :longitude, :rating, :urbanspoon_id, :integer, :phone_number, :website)
+      params.require(:restaurant).permit(:name, :suburb, :address, :latitude, :longitude, :rating, :urbanspoon_id, :integer, :phone_number, :website, :yelp_business_id)
     end
+
+    def sort_column  
+      params[:sort] || "id"  
+    end  
+      
+    def sort_direction  
+      params[:direction] || "asc"  
+    end  
 end

@@ -1,0 +1,17 @@
+<%= form_for(@dinder_search) do |f| %>
+  <% if @dinder_search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dinder_search.errors.count, "error") %> prohibited this dinder_search from being saved:</h2>
+
+      <ul>
+      <% @dinder_search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

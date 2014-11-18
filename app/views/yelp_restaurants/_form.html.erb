@@ -1,0 +1,17 @@
+<%= form_for(@yelp_restaurant) do |f| %>
+  <% if @yelp_restaurant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@yelp_restaurant.errors.count, "error") %> prohibited this yelp_restaurant from being saved:</h2>
+
+      <ul>
+      <% @yelp_restaurant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

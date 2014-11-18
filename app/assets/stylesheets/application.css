@@ -108,7 +108,8 @@
 }
 
 .restaurant .details .scores {
-	margin-top: 10px;
+	margin: 10px auto 0 auto;
+	width: 268px;
 }
 
 .restaurant .details .scores .row {

@@ -28,7 +28,7 @@
 					    <div class='dots'></div>
 						</div>
 						<div class="description">
-						<% if restaurant.price %><span class="price"><span class="highlight"><%= "$" * restaurant.price %></span><%= "$" * (4 - restaurant.price) %></span><% end %> <%= restaurant.tags.map(&:name).join(", ") %><br>
+						<% if restaurant.price %><span class="price"><span class="highlight"><%= "$" * restaurant.price %></span><%= "$" * (4 - restaurant.price) %></span><% end %> <%= restaurant.tags.map(&:name).join(", ") %><%= restaurant.good_for_groups ? ", Good for groups" : "" %><%= restaurant.noise_level > 2 ? ", Noisy" : "" %><%= restaurant.ambience.nil? ? "" : ", " + restaurant.ambience %><br>
 						</div>
 						<div class="scores">
 							<div class="row">

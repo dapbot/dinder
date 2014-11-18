@@ -245,5 +245,13 @@ class YelpRestaurant < ActiveRecord::Base
 
 	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)", current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
 
 end

@@ -48,12 +48,26 @@ class YelpRestaurant < ActiveRecord::Base
   def best_photos
     if id == 1367
       result = ["http://scontent-b.cdninstagram.com/hphotos-xpa1/t51.2885-15/928303_307421976117232_1162356072_a.jpg", "http://scontent-a.cdninstagram.com/hphotos-xpf1/t51.2885-15/1889207_838245069539097_1856198664_a.jpg", "http://scontent-a.cdninstagram.com/hphotos-xfp1/t51.2885-15/10665328_692063460909852_99541546_a.jpg"]
+      result += instagram_photos.map(&:medium_resolution_url)[0..2]
     else
-      result = instagram_photos.map(&:medium_resolution_url)[0..2]
+      result = instagram_photos.map(&:medium_resolution_url)[0..5]
     end
     result
   end
 
+  def description
+    result = ""
+    result += tags.map(&:name).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ")
+    result += good_for_groups ? ", Good for groups" : ""
+    result += noise_level && noise_level > 2 ? ", Noisy" : "" 
+    result += ambience.nil? ? "" : ", " + ambience
+    result += "<br><span class='price'><span class='highlight'>" + ("$" * price) + "</span>" + ("$" * (4 - price)) +"</span> " if price
+    result.html_safe
+  end
+
+  def paramaterised_address
+    address_street.gsub(/\s/, "+").gsub(/[\,\/\\]/,"") + "+" + address_suburb + "+" + address_state + "+" + address_post_code 
+  end
 
   def self.yelp_search_url(query_num)
     # Area is divided into 64 tiles

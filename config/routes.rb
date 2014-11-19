@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#dinder'
   get 'old_search', to: 'pages#home'
-
+  get 'test', to: 'pages#test'
 
   resources :restaurant_tags, :only => :index
   resources :tags, :only => :index

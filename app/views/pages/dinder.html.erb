@@ -6,6 +6,8 @@
 
 <div class="container">
 	<% if @lat_lng %>
-		<%= render partial: 'pages/restaurant_card', locals: { restaurant: @restaurants.first}  %>
+		<% @restaurants[0..19].each do |restaurant| %>
+			<%= render partial: 'pages/restaurant_card', locals: { restaurant: restaurant}  %>
+		<% end %>
 	<% end %>
 </div>

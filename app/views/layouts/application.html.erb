@@ -13,8 +13,23 @@
 
 </head>
 <body>
+  <script>
 
-<%= yield %>
+  $(".first_row").imagesLoaded( function(){
+      $(".first_row").css("height", $(".image_1").height());
+  })
+  $(".extended").imagesLoaded( function(){
+      $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
+  })
+  </script>
+  <div data-role="header">
+    <h1>Dinder</h1>
+    <a href="index.html" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all">1</a>
+  </div>
+
+  <div class="main_body">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

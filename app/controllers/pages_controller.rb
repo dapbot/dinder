@@ -29,4 +29,7 @@ class PagesController < ApplicationController
 	  	@restaurants = @search.results
 	  end
 	end
+
+	def test
+	end
 end

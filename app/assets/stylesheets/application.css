@@ -12,12 +12,10 @@
  *
  *= require_tree .
  *= require_self
- *= require jquery.swipeshow
+ *= require jquery.mobile.squareui
  */
 
- * {
- font-family: 'Andika', sans-serif;
-}
+
 
  .container {
  	top: 0px;
@@ -40,22 +38,29 @@
 	text-decoration:underline;
 }
 
+.main_body {
+	position: absolute;
+	bottom: 0px;
+	top: 45px;
+	left: 0px;
+	right: 0px;
+	overflow: hidden;
+}
 .restaurant {
 	position: absolute;
-	top: 7px;
-	bottom: 7px;
-	left: 7px;
-	right: 7px;
+	top: 10px;
+	bottom: 10px;
+	left: 10px;
+	right: 10px;
 	margin: 0px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.4);
-
+  background-color: #fff;
 }
 
 .restaurant .name {
-	height: 30px;
-	padding: 5px 10px;
-	background: #cc0900;
-	color: #fff;
+	height: 25px;
+	padding: 10px 10px 5px 10px ;
+	/*background: #cc0900;*/
 	margin: 0;
 }
 
@@ -65,10 +70,16 @@
 
 .restaurant .name .left {
 	font-weight: bold;
+  color: #cc0900;
+  	font-size: 18px;
+
+}
+
+.restaurant .name .right {
+	padding-top: 3px;
 }
 
 .restaurant .photos {
-	overflow: hidden;
 }
 
 .restaurant .photos .image {
@@ -78,6 +89,23 @@
 	height: auto;
 	float: left;
 }
+
+.photos .first_row {
+		overflow: hidden;
+}
+
+.photos .extended {
+		overflow: hidden;
+}
+
+.restaurant:nth-child(3) {
+    top: 2px; transform: translate(2px, 2px) rotate(0.2deg);
+}
+
+.restaurant:nth-child(2) {
+    top: 4px; transform: translate(-2px, -1px) rotate(-0.4deg);
+}
+
 
 .restaurant .photos .image_1 {
 	width: 66.6%;
@@ -96,14 +124,27 @@
 	border-top: 2px solid #fff;
 }
 
-.footer-panel {
-	position: absolute;
-	height: 70px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	text-align: center;
+.restaurant .photos .image_4 {
+	width: 33.3%;
+	border-top: 4px solid #fff;
+	border-right: 2px solid #fff;
 }
+
+.restaurant .photos .image_5 {
+	width: 33.3%;
+	border-top: 4px solid #fff;
+	border-left: 2px solid #fff;
+	border-right: 2px solid #fff;
+}
+
+.restaurant .photos .image_6 {
+	border-top: 4px solid #fff;
+	width: 33.3%;
+	border-left: 2px solid #fff;
+}
+
+
+
 
 
 
@@ -118,28 +159,45 @@
 	margin-right: 5px;
 }
 */
+
+.footer-panel {
+	position: absolute;
+	height: 110px;
+	bottom: 0px;
+	left: 8px;
+	right: 8px;
+	text-align: center;
+}
+
+
 .footer-panel a {
 	width: 80px;
+	margin: 4px 0;
+}
+
+.footer-panel a.no {
+	float:left;
+}
+
+.footer-panel a.yes {
+	float:right;
+}
+
+.footer-panel a.call {
+	float:left;
+}
+
+.footer-panel a.directions {
+	float:right;
 }
 
 .footer-panel a, .footer-panel a:visited {
 	color: #fff;
 }
 
-
-.my-gallery {
-  width: 250px !important;
-  height: 250px !important; 
-}
-
-.my-gallery img {
-	width: 250px;
-	height: 250px;
-}
-
 .restaurant .description {
-	text-align: center;
-	margin-top: 10px;
+	text-align: left;
+	padding: 0px 10px;
 }
 
 .restaurant .details .scores {
@@ -166,3 +224,10 @@
 	margin: 4px 0px;
 }
 
+
+ul {
+	width: 100px;
+	height: 100px;
+	list-style: none;
+
+}

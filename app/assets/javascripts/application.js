@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require jquery.swipeshow.min
-//= require turbolinks
+//= require jquery.mobile
+//= require swing.min
+//= require imagesloaded.pkgd.min
 //= require_tree .
+
+window.resized_images = false;
 
 function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie);
@@ -30,8 +33,44 @@ function setGeoCookie(position) {
 	location.reload();
 }
 
+var stack,
+    cards,
+    config;
+
+config = {
+  isThrowOut: function (offset, element, throwOutConfidence) {
+    return throwOutConfidence > 0.5;
+  }
+}
+
 $(function() {
-  $(".photos").css("height", $(".image_1").height());
-  // $(".my-gallery").swipeshow();
+  if (window.screen.height > 550){
+    $(".extended").css("display", "block");
+  }
+
+  // $(".first_row").css("height", $(".image_1").height());
+  // $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
+  // if (window.resized_images == false){
+  //   $(".first_row").css("height", $(".image_1").height());
+  //   $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
+  //   window.resized_images = true;
+  //   alert("bang!");
+  // }
+
+  // Prepare the cards in the stack for iteration.
+  cards = [].slice.call(document.querySelectorAll('div.container div.restaurant'))
+
+  // An instance of the Stack is used to attach event listeners.
+  stack = gajus.Swing.Stack(config);
+
+  cards.forEach(function (targetElement) {
+      // Add card element to the Stack.
+      stack.createCard(targetElement);
+  });
+
 });
+
+
+
+
 

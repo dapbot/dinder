@@ -31,5 +31,7 @@ function setGeoCookie(position) {
 }
 
 $(function() {
-  $(".my-gallery").swipeshow();
+  $(".photos").css("height", $(".image_1").height());
+  // $(".my-gallery").swipeshow();
 });
+

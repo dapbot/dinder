@@ -43,6 +43,17 @@ class YelpRestaurant < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
+  has_many :instagram_photos
+
+  def best_photos
+    if id == 1367
+      result = ["http://scontent-b.cdninstagram.com/hphotos-xpa1/t51.2885-15/928303_307421976117232_1162356072_a.jpg", "http://scontent-a.cdninstagram.com/hphotos-xpf1/t51.2885-15/1889207_838245069539097_1856198664_a.jpg", "http://scontent-a.cdninstagram.com/hphotos-xfp1/t51.2885-15/10665328_692063460909852_99541546_a.jpg"]
+    else
+      result = instagram_photos.map(&:medium_resolution_url)[0..2]
+    end
+    result
+  end
+
 
   def self.yelp_search_url(query_num)
     # Area is divided into 64 tiles
@@ -243,7 +254,26 @@ class YelpRestaurant < ActiveRecord::Base
 	  end
 	end
 
+  def load_instagram_photos(force_search = false)
+    if self.instagram_photos.length == 0 || force_search
+      locations = Instagram.location_search(latitude, longitude).select{|location| location["name"].similarity_to(self.name) > 0.2}
+      media = []
+      locations.each do |location|
+        media += Instagram.location_recent_media(location["id"]).map{|m| m["images"]}
+      end
+      media.each do |photo|
+        instagram_photo = self.instagram_photos.find_or_initialize_by(low_resolution_url: photo["thumbnail"]["url"])
+        instagram_photo.update_attributes(:medium_resolution_url => photo["low_resolution"]["url"], :high_resolution_url => photo["standard_resolution"]["url"])
+        instagram_photo.save
+      end
+    end
+  end
+
 	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)", current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
+
+  def self.affordable
+    where("price < 3")
+  end
 
   def self.to_csv
     CSV.generate do |csv|

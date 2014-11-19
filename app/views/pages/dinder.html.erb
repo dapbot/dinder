@@ -6,55 +6,6 @@
 
 <div class="container">
 	<% if @lat_lng %>
-		<% restaurant = @restaurants.first %>
-			<div class="restaurant panel panel-default">
-				<div class="name panel-heading">
-					<div class="left">
-						<%= restaurant.name %>
-					</div>
-					<div class="right">
-						<%= '%.1f' % restaurant.distance_to( @lat_lng ) %> km
-					</div>
-					<div class="clear"></div>
-				</div>
-				<div class="panel-body">
-					<div class="details">
-						<div class="my-gallery swipeshow slideshow">
-						  <ul class="slides">
-						    <li class="slide"><img src="<%= restaurant.photo_url %>"></li>
-						    <li class="slide"><img src="<%= restaurant.photo_url  %>"></li>
-						    <li class="slide"><img src="<%= restaurant.photo_url  %>"></li>
-						  </ul>
-					    <div class='dots'></div>
-						</div>
-						<div class="description">
-						<% if restaurant.price %><span class="price"><span class="highlight"><%= "$" * restaurant.price %></span><%= "$" * (4 - restaurant.price) %></span><% end %> <%= restaurant.tags.map(&:name).join(", ") %><%= restaurant.good_for_groups ? ", Good for groups" : "" %><%= restaurant.noise_level > 2 ? ", Noisy" : "" %><%= restaurant.ambience.nil? ? "" : ", " + restaurant.ambience %><br>
-						</div>
-						<div class="scores">
-							<div class="row">
-								<img src="/assets/yelp.jpg">
-								<div class="progress">
-								  <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="<%= restaurant.rating * 10 %>" aria-valuemin="0" aria-valuemax="50" style="width: <%= restaurant.rating * 20 %>%">
-								    <span class="sr-only"><%= restaurant.rating * 10 %></span>
-								  </div>
-								</div>
-							</div>								
-							<div class="row">
-								<img src="/assets/urbanspoon.jpg">
-								<div class="progress">
-								  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-								    <span class="sr-only">0%</span>
-								  </div>
-								</div>
-							</div>
-							<div class="clear"></div>								
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-panel">
-						<%= link_to content_tag(:span, "", class: "fa fa-times fa-lg"), add_no_dinder_search_path(@search, {add_no: restaurant.id}), class: "btn btn-lg  btn-danger", method: :put %>
-						<%= link_to content_tag(:span, "", class: "fa fa-heart fa-lg"), old_search_path(), class: "btn btn-lg btn-success" %>
-			</div>
+		<%= render partial: 'pages/restaurant_card', locals: { restaurant: @restaurants.first}  %>
 	<% end %>
 </div>

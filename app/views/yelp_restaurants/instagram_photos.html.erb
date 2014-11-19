@@ -1,0 +1,5 @@
+<% @instagram_photos.each do |instagram_photo| %>
+  <%= instagram_photo.id %>
+  <%= image_tag instagram_photo.medium_resolution_url %>
+  <br>
+<% end %>

@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 ruby "1.9.3"
 
 gem 'nokogiri'
@@ -7,6 +7,7 @@ gem 'google_places'
 gem 'geocoder'
 gem 'will_paginate'
 gem 'jquery_mobile_rails'
+gem 'instagram'
 
 
 

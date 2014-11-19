@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  yelp_restaurant_id: 1
+  low_resolution_url: MyText
+  medium_resolution_url: MyText
+  high_resolution_url: MyText
+
+two:
+  yelp_restaurant_id: 1
+  low_resolution_url: MyText
+  medium_resolution_url: MyText
+  high_resolution_url: MyText

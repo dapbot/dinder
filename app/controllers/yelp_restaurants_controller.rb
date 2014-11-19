@@ -1,5 +1,5 @@
 class YelpRestaurantsController < ApplicationController
-  before_action :set_yelp_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_yelp_restaurant, only: [:show, :edit, :update, :destroy, :instagram_photos]
 
   # GET /yelp_restaurants
   # GET /yelp_restaurants.json
@@ -23,6 +23,10 @@ class YelpRestaurantsController < ApplicationController
 
   # GET /yelp_restaurants/1/edit
   def edit
+  end
+
+  def instagram_photos
+    @instagram_photos = @yelp_restaurant.instagram_photos
   end
 
   # POST /yelp_restaurants

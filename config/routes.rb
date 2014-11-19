@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   resources :tags, :only => :index
   resources :opening_periods, :only => :index
   resources :searches, :only => :index
-  resources :yelp_restaurants, :only => :index
+  resources :yelp_restaurants do
+    member do
+      get 'instagram_photos'
+    end
+  end
   resources :dinder_searches do
     member do
       put 'add_no'

@@ -15,6 +15,10 @@
  *= require jquery.swipeshow
  */
 
+ * {
+ font-family: 'Andika', sans-serif;
+}
+
  .container {
  	top: 0px;
  	bottom: 0px;
@@ -38,25 +42,70 @@
 
 .restaurant {
 	position: absolute;
-	top: 10px;
-	bottom: 10px;
-	left: 10px;
-	right: 10px;
-	margin: 0px 0px 50px 0px;
+	top: 7px;
+	bottom: 7px;
+	left: 7px;
+	right: 7px;
+	margin: 0px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.4);
+
+}
+
+.restaurant .name {
+	height: 30px;
+	padding: 5px 10px;
+	background: #cc0900;
+	color: #fff;
+	margin: 0;
+}
+
+.restaurant .restaurant_body {
+	margin: 0;
+}
+
+.restaurant .name .left {
+	font-weight: bold;
+}
+
+.restaurant .photos {
+	overflow: hidden;
+}
+
+.restaurant .photos .image {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+	height: auto;
+	float: left;
+}
+
+.restaurant .photos .image_1 {
+	width: 66.6%;
+	border-right: 2px solid #fff;
+}
+
+.restaurant .photos .image_2 {
+	width: 33.3%;
+	border-left: 2px solid #fff;
+	border-bottom: 2px solid #fff;
+}
+
+.restaurant .photos .image_3 {
+	width: 33.3%;
+	border-left: 2px solid #fff;
+	border-top: 2px solid #fff;
 }
 
 .footer-panel {
 	position: absolute;
-	height: 50px;
+	height: 70px;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
 	text-align: center;
 }
 
-.restaurant .name .left {
-	font-weight: bold;
-}
+
 
 .price .highlight {
 	color: #e78f02;
@@ -77,20 +126,6 @@
 	color: #fff;
 }
 
-.details .form-control[disabled] {
-	background: #fff;
-}
-
-.details .form-control {
-	width: 225px;
-	font-size: 11px;
-	text-align:  left;
-	padding: 8px 4px;
-}
-
-.details .input-group {
-	margin-top: 8px;
-}
 
 .my-gallery {
   width: 250px !important;

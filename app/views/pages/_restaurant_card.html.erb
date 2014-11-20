@@ -4,6 +4,11 @@
       <% restaurant.best_photos[0..2].each_with_index do |photo, index| %>
         <a href="<%= photo.high_resolution_url %>" class="swipebox" rel="gallery-<%= restaurant.id %>"><img src="<%= photo.low_resolution_url %>" class="image image_<%= (index + 1).to_s %>"></a>
       <% end %>
+      <% if restaurant.best_photos.length > 2 %>
+        <% restaurant.best_photos[3..-1].each_with_index do |photo, index| %>
+          <a href="<%= photo.high_resolution_url %>" class="swipebox hidden" rel="gallery-<%= restaurant.id %>"></a>
+        <% end %>
+      <% end %>
       <div class="clear"></div>
     </div>
   </div>

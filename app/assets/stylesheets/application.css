@@ -129,24 +129,11 @@
 	border-top: 2px solid #fff;
 }
 
-.restaurant .photos .image_4 {
-	width: 33.3%;
-	border-top: 4px solid #fff;
-	border-right: 2px solid #fff;
+.restaurant .photos .hidden {
+  display: none;
 }
 
-.restaurant .photos .image_5 {
-	width: 33.3%;
-	border-top: 4px solid #fff;
-	border-left: 2px solid #fff;
-	border-right: 2px solid #fff;
-}
 
-.restaurant .photos .image_6 {
-	border-top: 4px solid #fff;
-	width: 33.3%;
-	border-left: 2px solid #fff;
-}
 
 .restaurant .foreground {
 	position:absolute;

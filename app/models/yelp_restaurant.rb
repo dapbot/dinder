@@ -46,7 +46,7 @@ class YelpRestaurant < ActiveRecord::Base
   has_many :instagram_photos
 
   def best_photos
-    instagram_photos[0..5]
+    instagram_photos
   end
 
   def description

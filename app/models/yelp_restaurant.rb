@@ -266,7 +266,8 @@ class YelpRestaurant < ActiveRecord::Base
 	end
 
   def load_instagram_photos(force_search = false)
-    if self.instagram_photos.length == 0 || force_search
+    if ((self.instagram_photos_fetched_at.nil? || self.instagram_photos_fetched_at < Time.zone.now - 14.days) && (self.instagram_photos.length == 0)) || force_search
+      puts "Loading photos for: " + self.name
       locations = Instagram.location_search(latitude, longitude).select{|location| location["name"].similarity_to(self.name) > 0.2}
       media = []
       locations.each do |location|
@@ -277,6 +278,7 @@ class YelpRestaurant < ActiveRecord::Base
         instagram_photo.update_attributes(:medium_resolution_url => photo["low_resolution"]["url"], :high_resolution_url => photo["standard_resolution"]["url"])
         instagram_photo.save
       end
+      update_attributes(instagram_photos_fetched_at: Time.zone.now)
     end
   end
 

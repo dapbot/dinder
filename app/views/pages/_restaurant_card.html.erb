@@ -1,17 +1,11 @@
-<div class="restaurant">
-  <!-- <div class="foreground"></div> -->
+<div class="restaurant" id="restaurant_<%= restaurant.id %>" data-telephone="<%= restaurant.phone_number || '' %>" data-address="<%= restaurant.paramaterised_address || '' %>">
   <div class="photos">
     <div class="first_row">
-      <% (0..2).each do |photo| %>
-        <img src="<%= restaurant.best_photos[photo] %>" class="image image_<%= (photo + 1).to_s %>">
+      <% restaurant.best_photos[0..2].each_with_index do |photo, index| %>
+        <a href="<%= photo.high_resolution_url %>" class="swipebox" rel="gallery-<%= restaurant.id %>"><img src="<%= photo.low_resolution_url %>" class="image image_<%= (index + 1).to_s %>"></a>
       <% end %>
       <div class="clear"></div>
     </div>
-<!--     <div class="extended" style="display:none;">
-      <% (3..5).each do |photo| %>
-        <img src="<%= restaurant.best_photos[photo] %>" class="image image_<%= (photo + 1).to_s %>">
-      <% end %>
-    </div> -->
   </div>
   <div class="name">
     <div class="left">
@@ -25,6 +19,10 @@
   <div class="details">
     <div class="description">
       <%= restaurant.description %>
+      <div class="price">
+        <%= restaurant.price_html.html_safe %>
+      </div>
     </div>
+
   </div>
 </div>

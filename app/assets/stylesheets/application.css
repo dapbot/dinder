@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require jquery.mobile.squareui
+ *= require swipebox.min
  */
 
 
@@ -165,6 +166,7 @@
 	color: #e78f02;
 }
 .price {
+	margin-top: 3px;
 	color: #ddd;
 }
 

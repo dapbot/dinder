@@ -13,7 +13,7 @@ class DinderSearch < ActiveRecord::Base
 
 	def results
     results = YelpRestaurant.where(nil)
-    results = results.near(lat_lng.split("|"), 0.5)
+    results = results.near(lat_lng.split("|"), 1)
     results = results.open_now
     results = results.affordable
     results = results.where("yelp_restaurants.id NOT IN (SELECT yelp_restaurant_id FROM unwanted_restaurant_tags WHERE dinder_search_id = #{self.id})") if unwanted_restaurants.count > 0

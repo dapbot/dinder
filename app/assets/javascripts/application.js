@@ -12,13 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require jquery.mobile
 //= require swing.min
-//= require imagesloaded.pkgd.min
+//= require jquery.swipebox.min
 //= require_tree .
-
-// window.resized_images = false;
 
 function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie);
@@ -36,7 +33,10 @@ function setGeoCookie(position) {
 var stack,
     cards,
     config,
-    current_card;
+    current_card,
+    shortlist;
+
+shortlist = [];
 
 config = {
   isThrowOut: function (offset, element, throwOutConfidence) {
@@ -48,11 +48,7 @@ $(function() {
   
   $(".restaurant").css("height", $(".restaurant").width() + 30)
 
-  // if (window.screen.height > 550){
-  //   $(".extended").css("display", "block");
-  // }
-
-  // $(".first_row").css("height", $(".image_1").height());
+  $(".first_row").css("height", $(".image_1").height());
   // $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
   // if (window.resized_images == false){
   //   $(".first_row").css("height", $(".image_1").height());
@@ -77,8 +73,6 @@ $(function() {
   // if(!window.pageYOffset){ hideAddressBar(); }
 
   stack.on('dragmove', function(e){
-          console.log(e.throwDirection)
-
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT){
       $(".container").css("background", "rgba(185, 87, 82, " + e.throwOutConfidence.toString() + ")")    
     } else {
@@ -90,16 +84,26 @@ $(function() {
   })
   stack.on('throwout', function(e){
     $(".container").css("background", "#fff")
+    if (e.throwDirection === gajus.Swing.Card.DIRECTION_RIGHT){
+      shortlist.push(cards[current_card]);
+      $("#shortlist_count").html(shortlist.length);
+    }
     current_card --;
+    $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));
+    $(".directions").attr("href", "https://maps.google.com?saddr=Current+Location&daddr=" + $(cards[current_card]).data("address"));
   })
 
-  $("#no_button").on("tap", function(){
+  $("#no_button").on("tap", function(e){
     stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_LEFT, 0);
+    e.preventDefault();
   });
 
-  $("#yes_button").on("tap", function(){
+  $("#yes_button").on("tap", function(e){
     stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_RIGHT, 0);
+    e.preventDefault();
   });
+
+  $( '.swipebox' ).swipebox();
 
 });
 

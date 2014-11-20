@@ -18,7 +18,7 @@
 //= require imagesloaded.pkgd.min
 //= require_tree .
 
-window.resized_images = false;
+// window.resized_images = false;
 
 function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie);
@@ -35,7 +35,8 @@ function setGeoCookie(position) {
 
 var stack,
     cards,
-    config;
+    config,
+    current_card;
 
 config = {
   isThrowOut: function (offset, element, throwOutConfidence) {
@@ -44,9 +45,12 @@ config = {
 }
 
 $(function() {
-  if (window.screen.height > 550){
-    $(".extended").css("display", "block");
-  }
+  
+  $(".restaurant").css("height", $(".restaurant").width() + 30)
+
+  // if (window.screen.height > 550){
+  //   $(".extended").css("display", "block");
+  // }
 
   // $(".first_row").css("height", $(".image_1").height());
   // $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
@@ -68,24 +72,51 @@ $(function() {
       stack.createCard(targetElement);
   });
 
-  if(!window.pageYOffset){ hideAddressBar(); }
+  current_card = cards.length - 1;
+
+  // if(!window.pageYOffset){ hideAddressBar(); }
+
+  stack.on('dragmove', function(e){
+          console.log(e.throwDirection)
+
+    if (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT){
+      $(".container").css("background", "rgba(185, 87, 82, " + e.throwOutConfidence.toString() + ")")    
+    } else {
+      $(".container").css("background", "rgba(27, 126, 90, " + e.throwOutConfidence.toString() + ")")          
+    }
+  })
+  stack.on('throwin', function(e){
+    $(".container").css("background", "#fff")
+  })
+  stack.on('throwout', function(e){
+    $(".container").css("background", "#fff")
+    current_card --;
+  })
+
+  $("#no_button").on("tap", function(){
+    stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_LEFT, 0);
+  });
+
+  $("#yes_button").on("tap", function(){
+    stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_RIGHT, 0);
+  });
 
 });
 
 
-function hideAddressBar()
-{
-  if(!window.location.hash)
-  {
-      if(document.height < window.outerHeight)
-      {
-          document.body.style.height = (window.outerHeight + 200) + 'px';
-      }
+// function hideAddressBar()
+// {
+//   if(!window.location.hash)
+//   {
+//       if(document.height < window.outerHeight)
+//       {
+//           document.body.style.height = (window.outerHeight + 200) + 'px';
+//       }
  
-      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
-  }
-}
+//       setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+//   }
+// }
  
-window.addEventListener("orientationchange", hideAddressBar );
+// window.addEventListener("orientationchange", hideAddressBar );
 
 

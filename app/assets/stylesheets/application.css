@@ -94,13 +94,43 @@ body {
 .restaurant .photos {
 }
 
-.restaurant .photos .image {
+.restaurant .photos .photo_container {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 	height: auto;
 	float: left;
   overflow:hidden;
+}
+
+.restaurant .photos .image_1 {
+  width: 66.6%;
+  border-right: 2px solid #fff;
+}
+
+.restaurant .photos .image_2 {
+  width: 33.3%;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.restaurant .photos .image_3 {
+  width: 33.3%;
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+}
+
+.restaurant .photos img {
+  height: 100%;
+  width: 100%;
+}
+
+.restaurant .photos a {
+  display: block;
+}
+
+.restaurant .photos .hidden {
+  display: none;
 }
 
 .restaurant .dinder_score {
@@ -159,26 +189,6 @@ body {
 }
 
 
-.restaurant .photos .image_1 {
-	width: 66.6%;
-	border-right: 2px solid #fff;
-}
-
-.restaurant .photos .image_2 {
-	width: 33.3%;
-	border-left: 2px solid #fff;
-	border-bottom: 2px solid #fff;
-}
-
-.restaurant .photos .image_3 {
-	width: 33.3%;
-	border-left: 2px solid #fff;
-	border-top: 2px solid #fff;
-}
-
-.restaurant .photos .hidden {
-  display: none;
-}
 
 
 

@@ -5,7 +5,9 @@
   <div class="photos">
     <div class="first_row">
       <% restaurant.best_photos[0..2].each_with_index do |photo, index| %>
-        <a href="<%= photo.high_resolution_url %>" class="swipebox" rel="gallery-<%= restaurant.id %>"><img src="<%= index == 0 ? photo.medium_resolution_url : photo.low_resolution_url %>" class="image image_<%= (index + 1).to_s %>"></a>
+        <div class="photo_container image_<%= (index + 1).to_s %>">
+          <a href="<%= photo.high_resolution_url %>" class="swipebox" rel="gallery-<%= restaurant.id %>"><img src="<%= index == 0 ? photo.medium_resolution_url : photo.low_resolution_url %>"  onload="OnImageLoad(event);" ></a>
+        </div>
       <% end %>
       <% if restaurant.best_photos.length > 2 %>
         <% restaurant.best_photos[3..-1].each_with_index do |photo, index| %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121043041) do
+ActiveRecord::Schema.define(version: 20141121054056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,15 +25,6 @@ ActiveRecord::Schema.define(version: 20141121043041) do
     t.datetime "updated_at"
   end
 
-  create_table "instagram_photos", force: true do |t|
-    t.integer  "yelp_restaurant_id"
-    t.text     "low_resolution_url"
-    t.text     "medium_resolution_url"
-    t.text     "high_resolution_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "opening_periods", force: true do |t|
     t.integer  "openable_id"
     t.integer  "day"
@@ -42,6 +33,16 @@ ActiveRecord::Schema.define(version: 20141121043041) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "openable_type"
+  end
+
+  create_table "photos", force: true do |t|
+    t.integer  "yelp_restaurant_id"
+    t.text     "low_resolution_url"
+    t.text     "medium_resolution_url"
+    t.text     "high_resolution_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "source"
   end
 
   create_table "restaurant_tags", force: true do |t|

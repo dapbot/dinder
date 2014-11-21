@@ -43,10 +43,10 @@ class YelpRestaurant < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
-  has_many :instagram_photos
+  has_many :photos
 
   def best_photos
-    instagram_photos
+    photos.from_source("Yelp").length > 5 ? photos.from_source("Yelp") : photos.from_source("Yelp") + photos.from_source("Instagram")
   end
 
   def description
@@ -296,11 +296,27 @@ class YelpRestaurant < ActiveRecord::Base
         media += Instagram.location_recent_media(location["id"]).map{|m| m["images"]}
       end
       media.each do |photo|
-        instagram_photo = self.instagram_photos.find_or_initialize_by(low_resolution_url: photo["thumbnail"]["url"])
-        instagram_photo.update_attributes(:medium_resolution_url => photo["low_resolution"]["url"], :high_resolution_url => photo["standard_resolution"]["url"])
+        instagram_photo = self.photos.from_source("Instagram").find_or_initialize_by(low_resolution_url: photo["thumbnail"]["url"])
+        instagram_photo.update_attributes(:medium_resolution_url => photo["low_resolution"]["url"], :high_resolution_url => photo["standard_resolution"]["url"], source: "Instagram")
         instagram_photo.save
       end
       update_attributes(instagram_photos_fetched_at: Time.zone.now)
+    end
+  end
+
+  def load_yelp_photos(force_search = false)
+    if self.photos.from_source("Yelp").count == 0 || force_search
+      agent = Mechanize.new
+      agent.keep_alive = false
+      agent.user_agent = "Mozilla/5.0 (Windows; U; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"
+      agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      photo_page = agent.get "http://www.yelp.com.au/biz_photos/" + yelp_id
+      photo_page.search(".photos-index > .photos > .photo").each do |photo|
+        photo_id = photo.search("a")[0].attr("href")[-22..-1]
+        yelp_photo = self.photos.from_source("Yelp").find_or_initialize_by(low_resolution_url: "http://s3-media3.fl.yelpcdn.com/bphoto/" + photo_id + "/ms.jpg")
+        yelp_photo.update_attributes(:medium_resolution_url => "http://s3-media3.fl.yelpcdn.com/bphoto/" + photo_id + "/l.jpg", :high_resolution_url => "http://s3-media3.fl.yelpcdn.com/bphoto/" + photo_id + "/l.jpg", source: "Yelp")
+        yelp_photo.save
+      end
     end
   end
 

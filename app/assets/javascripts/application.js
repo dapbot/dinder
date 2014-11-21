@@ -49,7 +49,7 @@ $(function() {
   
   $(".restaurant").css("height", $(".restaurant").width() + 30)
 
-  $(".first_row").css("height", $(".image_1").height());
+  // $(".first_row").css("height", $(".image_1").height());
   // $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
   // if (window.resized_images == false){
   //   $(".first_row").css("height", $(".image_1").height());

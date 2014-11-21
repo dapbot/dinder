@@ -101,6 +101,7 @@ body {
 	height: auto;
 	float: left;
   overflow:hidden;
+  position:relative;
 }
 
 .restaurant .photos .image_1 {
@@ -121,8 +122,9 @@ body {
 }
 
 .restaurant .photos img {
-  height: 100%;
-  width: 100%;
+/*  max-width: 100%;
+  max-height: 100%;
+*/  position:absolute;
 }
 
 .restaurant .photos a {
@@ -135,7 +137,7 @@ body {
 
 .restaurant .dinder_score {
   position:absolute;
-  padding: 10px;
+  padding: 15px;
   width: 20px;
   height: 20px;
   top: 0px;
@@ -191,21 +193,6 @@ body {
 
 
 
-
-.restaurant .foreground {
-	position:absolute;
-	z-index: 10;
-    top: 0px; 
-    bottom: 0px;
-    left: 0px;
-    right: 0px;	
-}
-
-
-
-
-
-
 .price .highlight {
 	color: #e78f02;
 }
@@ -253,34 +240,36 @@ body {
 	padding: 0px 10px;
 }
 
-.restaurant .details .scores {
-	margin: 10px auto 0 auto;
-	width: 268px;
+.no_hover, .yes_hover {
+  position: absolute;
+  top:50px;
+  padding: 40px;
+  width: 22px;
+  height: 22px;
+  transform: rotate(3deg);
+  opacity: 0;
 }
 
-.restaurant .details .scores .row {
-	float:left;
-	margin: 0;
-	width: 133px;
+.no_hover {
+  right: 35px;
+  background-color: #b95752;
 }
 
-.restaurant .details .scores img {
-	width: 32px;
-	height: 32px;
-	float:left;
-	margin-right: 8px;
+.yes_hover {
+  left: 35px;
+  background-color: #166549;
 }
 
-.restaurant .details .scores .progress {
-	float:left;
-	width: 85px;
-	margin: 4px 0px;
+.cross {
+  width: 22px;
+  height: 22px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAGBJREFUKJGdklEKwCAMQ9Oxe687efzpBlpTivkSH69EKhAh6SQdIlsel1+SvOXLZZIVv0Wzh+R/VvXVVJXynT2pKU/SJft3c1S1Kc1yIXnF1B5fM/MYDKhd8uTLLTBJig+jUY4fd8ztxwAAAABJRU5ErkJggg==);
+  background-size: 100%;
 }
 
-
-ul {
-	width: 100px;
-	height: 100px;
-	list-style: none;
-
+.star {
+  width: 22px;
+  height: 22px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAALpJREFUKJGNkjEOQUEYhP9sVMIB1DqVxB24gmiovGNxCU5BxzUkyCtnPo0Xwu7Lm24zM5n5JxtRADADZiW+VyJsVxFBRFQlTc40lPSU9AAGOU0qeFcppUFKaRgRq86Jks58cMqKgI2kmo6QVNteNzdNJF07mC62J7/JfWDfYtoB/Wxt2+OS0fa4bdVFy2bzohGYv5NvwBJY2r59c7l1e5Iekg62R1/1R5KOku7A/08DpsC21BPYAtPm/QJYiw7xNKZu0gAAAABJRU5ErkJggg==);
+  background-size: 100%;
 }

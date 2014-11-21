@@ -46,10 +46,15 @@ config = {
 }
 
 $(function() {
+  $("div.ui-page").css("min-height", window.outerHeight)
   
   $(".restaurant").css("height", $(".restaurant").width() + 30)
 
   $(".first_row").css("height", Math.floor($(".restaurant").width() * 2 / 3) - 2);
+
+  $(".photo_container").each(function(){
+    $(this).css("height", $(this).width());
+  })
   // $(".photo_container").each(function(){
   //   if($(this).width() > $(this).children("img").first.width()){
   //     $(this).children("img").css("width", $(this).width())
@@ -81,23 +86,33 @@ $(function() {
   // if(!window.pageYOffset){ hideAddressBar(); }
 
   stack.on('dragmove', function(e){
+
+
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT){
-      // $(".container").css("background", "rgba(185, 87, 82, " + e.throwOutConfidence.toString() + ")")    
-      $(".yes, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )
+      // $(".yes, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )
+      if ($(".no_hover").length == 0){
+        $(cards[current_card]).append("<div class='no_hover ui-icon-delete'><div class='cross'></div></div>");
+      } else {
+        $(".no_hover").css("opacity", e.throwOutConfidence * 1.5)
+      }
     } else {
-      // $(".container").css("background", "rgba(27, 126, 90, " + e.throwOutConfidence.toString() + ")")          
-      $(".no, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )    
+      // $(".no, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )    
+      if ($(".yes_hover").length == 0){
+        $(cards[current_card]).append("<div class='yes_hover ui-icon-delete'><div class='star'></div></div>");
+      } else {
+        $(".yes_hover").css("opacity", e.throwOutConfidence * 1.5)
+      }
     }
   })
   stack.on('throwin', function(e){
-    // $(".container").css("background", "#fff")     
-     $(".yes, .call, .directions").css("opacity", 1  )    
+    $(".no_hover, .yes_hover").remove();
+    // $(".no, .yes, .call, .directions").css("opacity", 1  )    
 
   })
   stack.on('throwout', function(e){
-    // $(".container").css("background", "#fff")
+    $(".no_hover, .yes_hover").remove();
 
-    $(".no, .yes, .call, .directions").css("opacity", 1  )    
+    // $(".no, .yes, .call, .directions").css("opacity", 1  )    
 
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_RIGHT){
       $.ajax({
@@ -161,19 +176,20 @@ $(function() {
 function OnImageLoad(evt) {
 
     var img = evt.currentTarget;
+    console.log("image loaded: " + img)
 
     // what's the size of this image and it's parent
     var w = $(img).width();
     var h = $(img).height();
     var tw = $(img).parent().parent().width();
-    var th = $(img).parent().parent().height();
+    var th = $(img).parent().parent().width();
 
     // compute the new size and offsets
     var result = ScaleImage(w, h, tw, th, false);
 
     // adjust the image coordinates and size
-    img.width = result.width;
-    img.height = result.height;
+    $(img).css("width", result.width);
+    $(img).css("height", result.height);
     $(img).css("left", result.targetleft);
     $(img).css("top", result.targettop);
 }

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.mobile.overrides
 //= require jquery.mobile
 //= require swing.min
 //= require jquery.swipebox.min
@@ -58,7 +59,7 @@ $(function() {
   // }
 
   // Prepare the cards in the stack for iteration.
-  cards = [].slice.call(document.querySelectorAll('div.container div.restaurant'))
+  cards = [].slice.call(document.querySelectorAll('div.container div.restaurant.stacked'))
 
   // An instance of the Stack is used to attach event listeners.
   stack = gajus.Swing.Stack(config);
@@ -74,19 +75,45 @@ $(function() {
 
   stack.on('dragmove', function(e){
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT){
-      $(".container").css("background", "rgba(185, 87, 82, " + e.throwOutConfidence.toString() + ")")    
+      // $(".container").css("background", "rgba(185, 87, 82, " + e.throwOutConfidence.toString() + ")")    
+      $(".yes, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )
     } else {
-      $(".container").css("background", "rgba(27, 126, 90, " + e.throwOutConfidence.toString() + ")")          
+      // $(".container").css("background", "rgba(27, 126, 90, " + e.throwOutConfidence.toString() + ")")          
+      $(".no, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )    
     }
   })
   stack.on('throwin', function(e){
-    $(".container").css("background", "#fff")
+    // $(".container").css("background", "#fff")     
+     $(".yes, .call, .directions").css("opacity", 1  )    
+
   })
   stack.on('throwout', function(e){
-    $(".container").css("background", "#fff")
+    // $(".container").css("background", "#fff")
+
+    $(".no, .yes, .call, .directions").css("opacity", 1  )    
+
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_RIGHT){
+      $.ajax({
+        url: "/dinder_searches/" + $(".container").attr("id") + "/shortlist", 
+        type: 'POST',
+        data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
+        dataType: "json",
+        success: function(msg){
+          console.log("successfully discarded restaurant");
+        }
+      });    
       shortlist.push(cards[current_card]);
       $("#shortlist_count").html(shortlist.length);
+    } else {
+      $.ajax({
+        url: "/dinder_searches/" + $(".container").attr("id") + "/add_no", 
+        type: 'POST',
+        data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
+        dataType: "json",
+        success: function(msg){
+          console.log("successfully shortlisted restaurant");
+        }
+      });    
     }
     current_card --;
     $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));

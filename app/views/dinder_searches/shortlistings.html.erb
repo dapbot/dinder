@@ -1,0 +1,9 @@
+  <div class="container shortlistings" id="<%= @search.id %>">
+    <% if @restaurants && @restaurants.length > 0 %>
+      <% @restaurants.each do |restaurant| %>
+        <%= render partial: 'pages/restaurant_card', locals: { restaurant: restaurant}  %>
+      <% end %>
+    <% else %>
+      <div class="no_results">Uh.<br>You haven't shortlisted anything yet.</div>
+    <% end %>
+  </div>

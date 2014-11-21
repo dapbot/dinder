@@ -1,4 +1,7 @@
-<div class="restaurant" id="restaurant_<%= restaurant.id %>" data-telephone="<%= restaurant.phone_number || '' %>" data-address="<%= restaurant.paramaterised_address || '' %>">
+<div class="restaurant <%= action_name == 'shortlistings' ? '' : 'stacked' %>" id="<%= restaurant.id %>" data-telephone="<%= restaurant.phone_number || '' %>" data-address="<%= restaurant.paramaterised_address || '' %>">
+  <div class="dinder_score <%= restaurant.dinder_score_colour %>">
+    <%= restaurant.dinder_score.to_i %>
+  </div>
   <div class="photos">
     <div class="first_row">
       <% restaurant.best_photos[0..2].each_with_index do |photo, index| %>

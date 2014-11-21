@@ -51,19 +51,41 @@ class YelpRestaurant < ActiveRecord::Base
 
   def description
     result = ""
-    result += tags.map(&:name).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ")
-    result += good_for_groups ? ", Good for groups" : ""
-    result += noise_level && noise_level > 2 ? ", Noisy" : "" 
-    result += ambience.nil? ? "" : ", " + ambience
-    result.html_safe
+    result += tags.map(&:name).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ") + (tags.length > 0 ? ", " : "")
+    result += good_for_groups ? "Good for groups, " : ""
+    result += noise_level && noise_level > 2 ? "Noisy, " : "" 
+    result += ambience.nil? ? "" : ambience + ", "
+    result[0..-3].html_safe
   end
 
   def price_html
     self.price.nil? ? "" : "<span class='highlight'>" + ("$" * price) + "</span>" + ("$" * (4 - price))
   end
 
+  def dinder_score_colour
+    if dinder_score > 75
+      "green"
+    elsif dinder_score > 50
+      "amber"
+    else
+      "red"
+    end
+  end
+
   def paramaterised_address
     address_street.gsub(/\s/, "+").gsub(/[\,\/\\]/,"") + "+" + address_suburb + "+" + address_state + "+" + address_post_code 
+  end
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      product = find_by_id(row["id"]) || new
+      product.attributes = row.to_hash.slice(*accessible_attributes)
+      product.save!
+    end
+  end
+
+  def self.accessible_attributes
+    ["dinder_score"]
   end
 
   def self.yelp_search_url(query_num)

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :opening_periods, :only => :index
   resources :searches, :only => :index
   resources :yelp_restaurants do
+    collection do
+      post 'import'
+    end
     member do
       get 'instagram_photos'
     end
@@ -21,6 +24,8 @@ Rails.application.routes.draw do
   resources :dinder_searches do
     member do
       put 'add_no'
+      put 'shortlist'
+      get 'shortlistings'
     end
   end
 

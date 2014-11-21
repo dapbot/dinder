@@ -14,8 +14,13 @@
 </head>
 <body>
   <div data-role="header">
+    <% if action_name == "shortlistings" && @search %>
+      <a href="<%= dinder_search_path(@search) %>" data-role="button" data-icon="arrow-l" class="ui-btn-left ui-btn-corner-all">Back</a>
+    <% end %>
     <h1>Dinder</h1>
-    <a href="index.html" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all" id="shortlist_count">0</a>
+    <% if @search && action_name != "shortlistings" %>
+      <a href="<%= shortlistings_dinder_search_path(@search) %>" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all" id="shortlist_count"><%= @search.shortlisted_restaurants.length %></a>
+    <% end %>
   </div>
 
   <%= yield %>

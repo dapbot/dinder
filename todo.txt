@@ -1,4 +1,6 @@
-Improve sorting mechanism
-Grab Yelp 'noise' and 'reservations' and 'environments'
-Store Google ID
-Grab photo
+Add shortlist
+Have something happen when you get to the end of the cards
+
+
+pg_dump -Fc --no-acl --no-owner -h localhost -U postgres whatscooking_development > whatscooking.dump
+heroku pgbackups:restore HEROKU_POSTGRESQL_ORANGE 'https://s3.amazonaws.com/heroku-db-transfers/whatscooking.dump' --confirm whatscookingco

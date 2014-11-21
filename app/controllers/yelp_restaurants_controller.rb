@@ -4,11 +4,16 @@ class YelpRestaurantsController < ApplicationController
   # GET /yelp_restaurants
   # GET /yelp_restaurants.json
   def index
-    @yelp_restaurants = YelpRestaurant.all
+    @yelp_restaurants = YelpRestaurant.paginate(:per_page => 20, :page => params[:page])
     respond_to do |format|
       format.html
       format.csv { send_data YelpRestaurant.to_csv }
     end
+  end
+
+  def import
+    YelpRestaurant.import(params[:file])
+    redirect_to yelp_restaurants_path, notice: "Products imported."
   end
 
   # GET /yelp_restaurants/1

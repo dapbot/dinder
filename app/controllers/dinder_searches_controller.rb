@@ -1,5 +1,5 @@
 class DinderSearchesController < ApplicationController
-  before_action :set_dinder_search, only: [:show, :edit, :update, :destroy, :add_no]
+  before_action :set_dinder_search, only: [:show, :edit, :update, :destroy, :add_no, :shortlist, :shortlistings]
 
   # GET /dinder_searches
   # GET /dinder_searches.json
@@ -65,14 +65,32 @@ class DinderSearchesController < ApplicationController
 
   def add_no
     respond_to do |format|
-      if @dinder_search.add_no(params[:add_no])
+      if @dinder_search.add_no(params[:restaurant_id])
         format.html { redirect_to @dinder_search, notice: 'Dinder search was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dinder_search }
+        format.json { render json: {status: "ok"}, status: :ok }
       else
         format.html { render :edit }
-        format.json { render json: @dinder_search.errors, status: :unprocessable_entity }
+        format.json { render json: {status: "error"}, status: :unprocessable_entity }
       end
     end    
+  end
+
+  def shortlist
+    respond_to do |format|
+      if @dinder_search.shortlist(params[:restaurant_id])
+        format.html { redirect_to @dinder_search, notice: 'Dinder search was successfully updated.' }
+        format.json { render json: {status: "ok"}, status: :ok }
+      else
+        format.html { render :edit }
+        format.json { render json: {status: "error"}, status: :unprocessable_entity }
+      end
+    end    
+  end
+
+  def shortlistings
+    @search = @dinder_search
+    @lat_lng = cookies[:lat_lng] ? cookies[:lat_lng].split("|") : @dinder_search.lat_lng.split("|")
+    @restaurants = @search.shortlisted_restaurants
   end
 
   # DELETE /dinder_searches/1

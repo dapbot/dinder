@@ -25,6 +25,11 @@
  	right: 0px;
  	top: 44px;
  	bottom: 0px;
+  background: #eaeaea;
+ }
+
+ .container.shortlistings {
+  overflow: visible;
  }
 
  .left {
@@ -44,15 +49,23 @@
 }
 
 .restaurant {
-	position: absolute;
-	top: 25px;
-	height: 300px;
-	left: 25px;
-	right: 25px;
-	margin: 0px;
+  height: 300px;
   /*box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.3);*/
   border: 1px solid #ccc;
   background: #fff;
+}
+
+.restaurant.stacked {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  margin: 0px; 
+}
+
+.shortlistings .restaurant {
+  margin: 25px 25px 0px 25px;
+  position: relative;
 }
 
 .restaurant .name {
@@ -87,6 +100,37 @@
 	float: left;
 }
 
+.restaurant .dinder_score {
+  position:absolute;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  top: 0px;
+  left: 0px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.restaurant .dinder_score.green {
+  background: rgba(27, 126, 90, 0.8);
+}
+
+.restaurant .dinder_score.light_green {
+  background: rgba(81, 154, 128, 0.8);
+}
+
+.restaurant .dinder_score.amber {
+  background: rgba(195, 169, 69, 0.8);
+}
+
+.restaurant .dinder_score.light_red {
+  background: rgba(223, 118, 126, 0.8);
+}
+
+.restaurant .dinder_score.red {
+  background: rgba(107, 6, 13, 0.8);
+}
+
 .photos .first_row {
 		overflow: hidden;
 }
@@ -95,7 +139,7 @@
 		overflow: hidden;
 }
 
-.restaurant:nth-child(2) {
+.restaurant.stacked:nth-child(2) {
     top: 27px;
     bottom: 23px; 
     left: 27px;
@@ -103,7 +147,7 @@
     transform: translate(2px, 2px) rotate(0.2deg);
 }
 
-.restaurant:nth-child(3) {
+.restaurant.stacked:nth-child(3) {
     top: 29px; 
     bottom: 21px;
     left: 29px;
@@ -177,6 +221,8 @@
 	height: 55px;
 	margin: 4px 5px;
 	display: inline-block;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 2px 2px rgba(0, 0, 0, 0.5);
+
 }
 
 .footer-panel a.call, .footer-panel a.directions {

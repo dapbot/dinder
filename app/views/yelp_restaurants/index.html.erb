@@ -1,23 +1,54 @@
-<h1>Listing yelp_restaurants</h1>
+<%- model_class = YelpRestaurant -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h2>Import Products</h2>
 
-<table>
+<%= form_tag import_yelp_restaurants_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+    <%= will_paginate @yelp_restaurants %>
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:address_suburb) %></th>
+      <th><%= model_class.human_attribute_name(:latitude) %></th>
+      <th><%= model_class.human_attribute_name(:longitude) %></th>
+      <th><%= model_class.human_attribute_name(:rating) %></th>
+      <th><%= model_class.human_attribute_name(:review_count) %></th>
+      <th><%= model_class.human_attribute_name(:dinder_score) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @yelp_restaurants.each do |yelp_restaurant| %>
+    <% @yelp_restaurants.each do |restaurant| %>
       <tr>
-        <td><%= link_to 'Show', yelp_restaurant %></td>
-        <td><%= link_to 'Edit', edit_yelp_restaurant_path(yelp_restaurant) %></td>
-        <td><%= link_to 'Destroy', yelp_restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to restaurant.id, yelp_restaurant_path(restaurant) %></td>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.address_suburb %></td>
+        <td><%= restaurant.latitude %></td>
+        <td><%= restaurant.longitude %></td>
+        <td><%= restaurant.rating %></td>
+        <td><%= restaurant.review_count %></td>
+        <td><%= restaurant.dinder_score.to_i %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_yelp_restaurant_path(restaurant), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      yelp_restaurant_path(restaurant),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Yelp restaurant', new_yelp_restaurant_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_restaurant_path,
+            :class => 'btn btn-primary' %>

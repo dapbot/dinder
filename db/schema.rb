@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120060316) do
+ActiveRecord::Schema.define(version: 20141121043041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(version: 20141120060316) do
     t.datetime "updated_at"
   end
 
+  create_table "shortlistings", force: true do |t|
+    t.integer  "yelp_restaurant_id"
+    t.integer  "dinder_search_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tags", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -135,6 +142,7 @@ ActiveRecord::Schema.define(version: 20141120060316) do
     t.datetime "updated_at"
     t.string   "ambience"
     t.datetime "instagram_photos_fetched_at"
+    t.float    "dinder_score"
   end
 
 end

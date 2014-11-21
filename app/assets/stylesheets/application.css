@@ -16,7 +16,9 @@
  *= require swipebox.min
  */
 
-
+body {
+  background-color: #eaeaea;
+}
 
  .container {
  	position: absolute;
@@ -25,7 +27,7 @@
  	right: 0px;
  	top: 44px;
  	bottom: 0px;
-  background: #eaeaea;
+  /*background: #eaeaea;*/
  }
 
  .container.shortlistings {

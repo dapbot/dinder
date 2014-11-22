@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {registrations: 'registrations'}
   resources :restaurants
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
   resources :restaurant_tags, :only => :index
   resources :tags, :only => :index
   resources :opening_periods, :only => :index
-  resources :searches, :only => :index
   resources :yelp_restaurants do
     collection do
       post 'import'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121054056) do
+ActiveRecord::Schema.define(version: 20141122002157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141121054056) do
     t.string   "session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "opening_periods", force: true do |t|
@@ -85,18 +86,6 @@ ActiveRecord::Schema.define(version: 20141121054056) do
     t.datetime "yelp_last_fetched"
   end
 
-  create_table "searches", force: true do |t|
-    t.boolean  "open_now"
-    t.datetime "open_at"
-    t.string   "lat_lng"
-    t.integer  "cheaper_than"
-    t.integer  "fancier_than"
-    t.text     "not_cuisines", default: [], array: true
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "shortlistings", force: true do |t|
     t.integer  "yelp_restaurant_id"
     t.integer  "dinder_search_id"
@@ -115,6 +104,18 @@ ActiveRecord::Schema.define(version: 20141121054056) do
     t.integer  "dinder_search_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",       default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
   end
 
   create_table "yelp_restaurants", force: true do |t|

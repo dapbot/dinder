@@ -10,6 +10,7 @@ class DinderSearchesController < ApplicationController
   # GET /dinder_searches/1
   # GET /dinder_searches/1.json
   def show
+    redirect_to root_path if @dinder_search.user != current_user
     if params[:location]
       location = Geocoder.search(params[:location])[0]
       @lat_lng = [location.latitude.to_s, location.longitude.to_s]
@@ -19,6 +20,7 @@ class DinderSearchesController < ApplicationController
     if @lat_lng
       params[:lat_lng] ||= @lat_lng.join("|")
       @search = @dinder_search
+      @search.touch
       @restaurants = @search.results
     end
     render '/pages/dinder'
@@ -90,7 +92,7 @@ class DinderSearchesController < ApplicationController
   def shortlistings
     @search = @dinder_search
     @lat_lng = cookies[:lat_lng] ? cookies[:lat_lng].split("|") : @dinder_search.lat_lng.split("|")
-    @restaurants = @search.shortlisted_restaurants
+    @restaurants = @search.shortlisted_restaurants(@lat_lng)
   end
 
   # DELETE /dinder_searches/1

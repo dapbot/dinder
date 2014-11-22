@@ -273,3 +273,14 @@ body {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAALpJREFUKJGNkjEOQUEYhP9sVMIB1DqVxB24gmiovGNxCU5BxzUkyCtnPo0Xwu7Lm24zM5n5JxtRADADZiW+VyJsVxFBRFQlTc40lPSU9AAGOU0qeFcppUFKaRgRq86Jks58cMqKgI2kmo6QVNteNzdNJF07mC62J7/JfWDfYtoB/Wxt2+OS0fa4bdVFy2bzohGYv5NvwBJY2r59c7l1e5Iekg62R1/1R5KOku7A/08DpsC21BPYAtPm/QJYiw7xNKZu0gAAAABJRU5ErkJggg==);
   background-size: 100%;
 }
+
+.shortlisting_buttons {
+}
+
+.shortlisting_buttons a {
+  padding: 6px;
+  float:right;
+  margin-left: 5px;
+    background: #888 !important;
+  border-color: #888 !important;
+}

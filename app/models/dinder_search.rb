@@ -4,17 +4,17 @@ class DinderSearch < ActiveRecord::Base
 
   has_many :shortlistings
   has_many :shortlisted_restaurants, through: :shortlistings, source: :yelp_restaurant
+  belongs_to :user
 
   def distance_query
 	 "(6371.0 * 2 * ASIN(SQRT(POWER(SIN((" + lat_lng.split("|")[0].to_s + " - yelp_restaurants.latitude) * PI() / 180 / 2), 2) + COS("  + lat_lng.split("|")[0].to_s + " * PI() / 180) * COS(yelp_restaurants.latitude * PI() / 180) * POWER(SIN(( " + lat_lng.split("|")[1].to_s + " - yelp_restaurants.longitude) * PI() / 180 / 2), 2))))"
   end
-	
-	def self.create_with_params(params)
-		search = self.new
-		search.lat_lng = params[:lat_lng]
-		search.save
-		search
-	end
+
+  def save_with_params(params)
+    self.lat_lng = params[:lat_lng]
+    save
+    self
+  end
 
 	def results
     results = YelpRestaurant.where(nil)
@@ -29,10 +29,16 @@ class DinderSearch < ActiveRecord::Base
 
   def add_no(restaurant_id)
   	self.unwanted_restaurant_tags.find_or_create_by(yelp_restaurant_id: restaurant_id)
+    self.touch
   end
 
   def shortlist(restaurant_id)
     self.shortlistings.find_or_create_by(yelp_restaurant_id: restaurant_id)
+    self.touch
+  end
+
+  def shortlisted_restaurants_by_distance(lat_lng)
+    shortlisted_restaurants.near(lat_lng, 10)
   end
 
   def self.to_csv

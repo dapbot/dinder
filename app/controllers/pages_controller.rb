@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
-	def home
+
+	def dinder
+		if current_user.active_dinder_search
+			redirect_to dinder_search_path(current_user.active_dinder_search)
+		else
 			if params[:location]
 				location = Geocoder.search(params[:location])[0]
 				@lat_lng = [location.latitude.to_s, location.longitude.to_s]
@@ -7,27 +11,11 @@ class PagesController < ApplicationController
 			  @lat_lng = cookies[:lat_lng].split("|") if cookies[:lat_lng]
 			end
 		  if @lat_lng
-		  	params[:distance] ||= "walking"
-		  	params[:open_now] ||= true
 		  	params[:lat_lng] ||= @lat_lng.join("|")
-		  	@search = Search.create_with_params(params)
+		  	@search = current_user.dinder_searches.build.save_with_params(params)
 		  	@restaurants = @search.results
-
 		  end
-	end
-
-	def dinder
-		if params[:location]
-			location = Geocoder.search(params[:location])[0]
-			@lat_lng = [location.latitude.to_s, location.longitude.to_s]
-		else
-		  @lat_lng = cookies[:lat_lng].split("|") if cookies[:lat_lng]
 		end
-	  if @lat_lng
-	  	params[:lat_lng] ||= @lat_lng.join("|")
-	  	@search = DinderSearch.create_with_params(params)
-	  	@restaurants = @search.results
-	  end
 	end
 
 	def test

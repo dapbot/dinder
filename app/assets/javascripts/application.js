@@ -119,10 +119,7 @@ $(function() {
         url: "/dinder_searches/" + $(".container").attr("id") + "/shortlist", 
         type: 'POST',
         data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
-        dataType: "json",
-        success: function(msg){
-          console.log("successfully discarded restaurant");
-        }
+        dataType: "json"
       });    
       shortlist.push(cards[current_card]);
       $("#shortlist_count").html(shortlist.length);
@@ -131,10 +128,7 @@ $(function() {
         url: "/dinder_searches/" + $(".container").attr("id") + "/add_no", 
         type: 'POST',
         data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
-        dataType: "json",
-        success: function(msg){
-          console.log("successfully shortlisted restaurant");
-        }
+        dataType: "json"
       });    
     }
     current_card --;

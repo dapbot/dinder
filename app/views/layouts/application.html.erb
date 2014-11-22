@@ -20,8 +20,7 @@
   ga('create', 'UA-57001525-1', 'auto');
   ga('send', 'pageview');
   if ($.cookie("user_token")){
-      ga('set', '&uid', {{$.cookie("user_token")}}); // Set the user ID using signed-in user_id.
-
+      ga('set', '&uid', $.cookie("user_token")); // Set the user ID using signed-in user_id.
   }
 
 </script>

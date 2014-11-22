@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
 	def dinder
-		if current_user.active_dinder_search
+		if current_user.active_dinder_search && params[:location].nil?
 			redirect_to dinder_search_path(current_user.active_dinder_search)
 		else
 			if params[:location]

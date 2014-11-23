@@ -305,7 +305,7 @@ class YelpRestaurant < ActiveRecord::Base
   end
 
   def load_yelp_photos(force_search = false)
-    if self.photos.from_source("Yelp").count == 0 || force_search
+    if self.yelp_photos_last_fetched_at.nil? || self.yelp_photos_last_fetched_at < Time.zone.now - 90.days || force_search
       agent = Mechanize.new
       agent.keep_alive = false
       agent.user_agent = "Mozilla/5.0 (Windows; U; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)"
@@ -317,6 +317,7 @@ class YelpRestaurant < ActiveRecord::Base
         yelp_photo.update_attributes(:medium_resolution_url => "http://s3-media3.fl.yelpcdn.com/bphoto/" + photo_id + "/l.jpg", :high_resolution_url => "http://s3-media3.fl.yelpcdn.com/bphoto/" + photo_id + "/l.jpg", source: "Yelp")
         yelp_photo.save
       end
+      self.update_attributes(yelp_photos_last_fetched_at: Time.zone.now)
     end
   end
 

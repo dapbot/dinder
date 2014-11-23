@@ -147,7 +147,8 @@ body {
 }
 
 .restaurant .dinder_score.green {
-  background: rgba(27, 126, 90, 0.8);
+  /*background: rgba(27, 126, 90, 0.8);*/
+  background: rgba(102, 204, 51, 0.8);
 }
 
 .restaurant .dinder_score.light_green {
@@ -155,7 +156,8 @@ body {
 }
 
 .restaurant .dinder_score.amber {
-  background: rgba(195, 169, 69, 0.8);
+  /*background: rgba(195, 169, 69, 0.8);*/
+  background: rgba(255, 204, 51, 0.8);
 }
 
 .restaurant .dinder_score.light_red {
@@ -163,7 +165,8 @@ body {
 }
 
 .restaurant .dinder_score.red {
-  background: rgba(107, 6, 13, 0.8);
+  /*background: rgba(107, 6, 13, 0.8);*/
+  background: rgba(255, 0, 0, 0.8);
 }
 
 .photos .first_row {
@@ -242,37 +245,42 @@ body {
 
 .no_hover, .yes_hover {
   position: absolute;
-  top:50px;
-  padding: 40px;
-  width: 22px;
-  height: 22px;
+  top:30px;
+  /*padding: 40px;*/
+  width: 90px;
+  height: 90px;
   transform: rotate(3deg);
   opacity: 0;
 }
 
 .no_hover {
   right: 35px;
-  background-color: #b95752;
+  /*background-color: #b95752;*/
+  background-image: url("/assets/big_cross.png");
+  border: 10px solid #b95752;
 }
 
 .yes_hover {
   left: 35px;
-  background-color: #166549;
+  /*background-color: #166549;*/
+  background-image: url("/assets/big_star.png");
+  border: 10px solid #166549;
+
 }
 
 .cross {
-  width: 22px;
+/*  width: 22px;
   height: 22px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAGBJREFUKJGdklEKwCAMQ9Oxe687efzpBlpTivkSH69EKhAh6SQdIlsel1+SvOXLZZIVv0Wzh+R/VvXVVJXynT2pKU/SJft3c1S1Kc1yIXnF1B5fM/MYDKhd8uTLLTBJig+jUY4fd8ztxwAAAABJRU5ErkJggg==);
   background-size: 100%;
-}
+*/}
 
 .star {
-  width: 22px;
+/*  width: 22px;
   height: 22px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAANCAYAAACZ3F9/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAALpJREFUKJGNkjEOQUEYhP9sVMIB1DqVxB24gmiovGNxCU5BxzUkyCtnPo0Xwu7Lm24zM5n5JxtRADADZiW+VyJsVxFBRFQlTc40lPSU9AAGOU0qeFcppUFKaRgRq86Jks58cMqKgI2kmo6QVNteNzdNJF07mC62J7/JfWDfYtoB/Wxt2+OS0fa4bdVFy2bzohGYv5NvwBJY2r59c7l1e5Iekg62R1/1R5KOku7A/08DpsC21BPYAtPm/QJYiw7xNKZu0gAAAABJRU5ErkJggg==);
   background-size: 100%;
-}
+*/}
 
 .shortlisting_buttons {
 }

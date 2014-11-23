@@ -93,14 +93,14 @@ $(function() {
       if ($(".no_hover").length == 0){
         $(cards[current_card]).append("<div class='no_hover ui-icon-delete'><div class='cross'></div></div>");
       } else {
-        $(".no_hover").css("opacity", e.throwOutConfidence * 2)
+        $(".no_hover").css("opacity", e.throwOutConfidence * 2.5)
       }
     } else {
       // $(".no, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )    
       if ($(".yes_hover").length == 0){
         $(cards[current_card]).append("<div class='yes_hover ui-icon-delete'><div class='star'></div></div>");
       } else {
-        $(".yes_hover").css("opacity", e.throwOutConfidence * 2)
+        $(".yes_hover").css("opacity", e.throwOutConfidence * 2.5)
       }
     }
   })

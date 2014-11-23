@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>What's cooking? - Restaurants near me</title>
+  <title>What's cooking?</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
@@ -31,7 +31,7 @@
     <% if action_name == "shortlistings" && @search %>
       <a href="<%= dinder_search_path(@search) %>" data-role="button" data-icon="arrow-l" class="ui-btn-left ui-btn-corner-all">Back</a>
     <% end %>
-    <h1>Dinder</h1>
+    <h1>What's Cooking?</h1>
     <% if @search && action_name != "shortlistings" %>
       <a href="<%= shortlistings_dinder_search_path(@search) %>" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all" id="shortlist_count"><%= @search.shortlisted_restaurants.length %></a>
     <% end %>

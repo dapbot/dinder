@@ -3,12 +3,13 @@
 # Table name: opening_periods
 #
 #  id            :integer          not null, primary key
-#  restaurant_id :integer
+#  openable_id   :integer
 #  day           :integer
 #  opens_at      :integer
 #  closes_at     :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  openable_type :string(255)
 #
 
 require 'test_helper'

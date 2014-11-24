@@ -3,10 +3,11 @@
 # Table name: restaurant_tags
 #
 #  id            :integer          not null, primary key
-#  restaurant_id :integer
+#  taggable_id   :integer
 #  tag_id        :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  taggable_type :string(255)
 #
 
 require 'test_helper'

@@ -1,9 +1,25 @@
+# == Schema Information
+#
+# Table name: dinder_searches
+#
+#  id              :integer          not null, primary key
+#  lat_lng         :string(255)
+#  no_restaurants  :text             default([]), is an Array
+#  yes_restaurants :text             default([]), is an Array
+#  session_id      :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#
+
 class DinderSearch < ActiveRecord::Base
 	has_many :unwanted_restaurant_tags
 	has_many :unwanted_restaurants, through: :unwanted_restaurant_tags, source: :yelp_restaurant
 
   has_many :shortlistings
   has_many :shortlisted_restaurants, through: :shortlistings, source: :yelp_restaurant
+  has_many :clicks
+
   belongs_to :user
 
   def distance_query

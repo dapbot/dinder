@@ -1,17 +1,21 @@
 # == Schema Information
 #
-# Table name: shortlistings
+# Table name: clicks
 #
 #  id                 :integer          not null, primary key
-#  yelp_restaurant_id :integer
+#  user_id            :integer
 #  dinder_search_id   :integer
+#  clickable_type     :string(255)
+#  clickable_id       :integer
+#  purpose            :string(255)
+#  yelp_restaurant_id :integer
 #  created_at         :datetime
 #  updated_at         :datetime
 #
 
 require 'test_helper'
 
-class ShortlistingTest < ActiveSupport::TestCase
+class ClickTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -35,8 +35,11 @@ var stack,
     cards,
     config,
     current_card,
-    shortlist;
+    shortlist,
+    duplicate_swipebox_event;
 
+duplicate_swipebox_event = false;
+swiped_restaurant = true;
 shortlist = [];
 
 config = {
@@ -87,16 +90,13 @@ $(function() {
 
   stack.on('dragmove', function(e){
 
-
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT){
-      // $(".yes, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )
       if ($(".no_hover").length == 0){
         $(cards[current_card]).append("<div class='no_hover ui-icon-delete'><div class='cross'></div></div>");
       } else {
         $(".no_hover").css("opacity", e.throwOutConfidence * 2.5)
       }
     } else {
-      // $(".no, .call, .directions").css("opacity", (1 - e.throwOutConfidence) )    
       if ($(".yes_hover").length == 0){
         $(cards[current_card]).append("<div class='yes_hover ui-icon-delete'><div class='star'></div></div>");
       } else {
@@ -104,49 +104,107 @@ $(function() {
       }
     }
   })
+
   stack.on('throwin', function(e){
     $(".no_hover, .yes_hover").remove();
-    // $(".no, .yes, .call, .directions").css("opacity", 1  )    
 
   })
+
   stack.on('throwout', function(e){
+    successful_swipe = false;
     $(".no_hover, .yes_hover").remove();
 
-    // $(".no, .yes, .call, .directions").css("opacity", 1  )    
-
     if (e.throwDirection === gajus.Swing.Card.DIRECTION_RIGHT){
-      $.ajax({
-        url: "/dinder_searches/" + $(".container").attr("id") + "/shortlist", 
-        type: 'POST',
-        data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
-        dataType: "json"
-      });    
-      shortlist.push(cards[current_card]);
-      $("#shortlist_count").html(shortlist.length);
+      if (ever_yes || confirm("Swiping right will shortlist this restaurant. Are you sure?")){
+        if (ever_yes == false){
+          $.ajax({
+            url: "/users/" + current_user_id, 
+            type: 'POST',
+            data: {user: {ever_swiped_yes: true }, _method:'PUT'},
+            dataType: "json"
+          });
+          ever_yes = true;
+        }
+        $.ajax({
+          url: "/dinder_searches/" + $(".container").attr("id") + "/shortlist", 
+          type: 'POST',
+          data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
+          dataType: "json"
+        });    
+        shortlist.push(cards[current_card]);
+        $("#shortlist_count").html(shortlist.length);    
+        successful_swipe = true;
+        recordClick("Discarded Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"));
+      }
     } else {
-      $.ajax({
-        url: "/dinder_searches/" + $(".container").attr("id") + "/add_no", 
-        type: 'POST',
-        data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
-        dataType: "json"
-      });    
+      if (ever_no || confirm("Swiping left will discard this restaurant. Are you sure?")){
+        if (ever_no == false){
+          $.ajax({
+            url: "/users/" + current_user_id, 
+            type: 'POST',
+            data: {user: {ever_swiped_no: true }, _method:'PUT'},
+            dataType: "json"
+          });
+          ever_no = true;
+        }
+        $.ajax({
+          url: "/dinder_searches/" + $(".container").attr("id") + "/add_no", 
+          type: 'POST',
+          data: {restaurant_id: $(cards[current_card]).attr("id"), _method:'PUT'},
+          dataType: "json"
+        });
+        successful_swipe = true;    
+        recordClick("Shortlisted Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"));
+      }
     }
-    current_card --;
-    $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));
-    $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address"));
+    if (successful_swipe){
+      current_card --;
+      $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));
+      $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address"));
+      swiped_restaurant = true;
+    } else {
+      stack.getCard(cards[current_card]).throwIn(e.throwDirection, 0);
+    }
   })
 
   $("#no_button").on("tap", function(e){
+    swiped_restaurant = false;
     stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_LEFT, 0);
     e.preventDefault();
   });
 
   $("#yes_button").on("tap", function(e){
+    swiped_restaurant = false;
     stack.getCard(cards[current_card]).throwOut(gajus.Swing.Card.DIRECTION_RIGHT, 0);
     e.preventDefault();
   });
 
-  $( '.swipebox' ).swipebox();
+  $( '.swipebox' ).swipebox({
+    afterClose: function(){
+      if (duplicate_swipebox_event){
+        recordClick("Close Photo gallery");
+        duplicate_swipebox_event = false;
+      } else {
+        duplicate_swipebox_event = true;        
+      }
+    }
+  });
+
+  $(".call").on('click', function(){
+    recordClick("Call");
+  })
+  $(".directions").on('click', function(){
+    recordClick("Directions");
+  })
+  $(".photo_container > a").on('click', function(){
+    recordClick("Photo zoom: photo_id = " + $(this).attr("id"))
+  })
+  $("#shortlist_count").on('click', function(){
+    recordClick("Go to Shortlist");
+  })
+  $(".back_to_search").on('click', function(){
+    recordClick("Back to Search")
+  })
 
 });
 
@@ -166,6 +224,15 @@ $(function() {
  
 // window.addEventListener("orientationchange", hideAddressBar );
 
+
+function recordClick(purpose){
+  $.ajax({
+    url: "/clicks", 
+    type: 'POST',
+    data: {click: {dinder_search_id: search_id, purpose: purpose, yelp_restaurant_id: $(cards[current_card]).attr("id")}},
+    dataType: "json"
+  });
+}
 
 function OnImageLoad(evt) {
 

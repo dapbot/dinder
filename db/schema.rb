@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122023136) do
+ActiveRecord::Schema.define(version: 20141124042312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clicks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "dinder_search_id"
+    t.string   "clickable_type"
+    t.integer  "clickable_id"
+    t.string   "purpose"
+    t.integer  "yelp_restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dinder_searches", force: true do |t|
     t.string   "lat_lng"
@@ -108,7 +119,7 @@ ActiveRecord::Schema.define(version: 20141122023136) do
 
   create_table "users", force: true do |t|
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",       default: 0, null: false
+    t.integer  "sign_in_count",       default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -116,6 +127,8 @@ ActiveRecord::Schema.define(version: 20141122023136) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"
+    t.boolean  "ever_swiped_yes",     default: false
+    t.boolean  "ever_swiped_no",      default: false
   end
 
   create_table "yelp_restaurants", force: true do |t|

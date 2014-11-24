@@ -30,6 +30,8 @@
 #  yelp_score                 :float
 #  yelp_review_count          :integer
 #  yelp_photo_url             :text
+#  yelp_business_id           :string(255)
+#  yelp_last_fetched          :datetime
 #
 
 class Restaurant < ActiveRecord::Base

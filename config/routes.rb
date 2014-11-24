@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, :only => :update
+  resources :clicks, :only => :create
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

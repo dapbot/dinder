@@ -6,6 +6,12 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
   <link href="//fonts.googleapis.com/css?family=Andika&subset=latin" rel="stylesheet" type="text/css">
+  <%= javascript_tag do %>
+    ever_no = <%= current_user && current_user.ever_swiped_no %>;
+    ever_yes = <%= current_user && current_user.ever_swiped_yes %>;
+    current_user_id = <%= current_user ? current_user.id : nil %>;
+    search_id = <%= current_user ? current_user.active_dinder_search.id : nil %>;
+  <% end %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -29,7 +35,7 @@
 <body>
   <div data-role="header">
     <% if action_name == "shortlistings" && @search %>
-      <a href="<%= dinder_search_path(@search) %>" data-role="button" data-icon="arrow-l" class="ui-btn-left ui-btn-corner-all">Back</a>
+      <a href="<%= dinder_search_path(@search) %>" data-role="button" data-icon="arrow-l" class="ui-btn-left ui-btn-corner-all back_to_search">Back</a>
     <% end %>
     <h1>What's Cooking?</h1>
     <% if @search && action_name != "shortlistings" %>

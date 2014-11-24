@@ -55,7 +55,9 @@ class YelpRestaurant < ActiveRecord::Base
     result += good_for_groups ? "Good for groups, " : ""
     result += noise_level && noise_level > 2 ? "Noisy, " : "" 
     result += ambience.nil? ? "" : ambience + ", "
-    result[0..-3].html_safe
+    result = result[0..-3]
+    result = result[0..60] + "..." if result.length > 60
+    result.html_safe
   end
 
   def price_html

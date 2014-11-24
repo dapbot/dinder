@@ -245,7 +245,7 @@ body {
 
 .no_hover, .yes_hover {
   position: absolute;
-  top:30px;
+  top:25px;
   /*padding: 40px;*/
   width: 90px;
   height: 90px;
@@ -254,14 +254,14 @@ body {
 }
 
 .no_hover {
-  right: 35px;
+  right: 25px;
   /*background-color: #b95752;*/
   background-image: url("/assets/big_cross.png");
   border: 10px solid #b95752;
 }
 
 .yes_hover {
-  left: 35px;
+  left: 25px;
   /*background-color: #166549;*/
   background-image: url("/assets/big_star.png");
   border: 10px solid #166549;

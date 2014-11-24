@@ -133,7 +133,7 @@ $(function() {
     }
     current_card --;
     $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));
-    $(".directions").attr("href", "https://maps.google.com?saddr=Current+Location&daddr=" + $(cards[current_card]).data("address"));
+    $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address"));
   })
 
   $("#no_button").on("tap", function(e){

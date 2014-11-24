@@ -34,8 +34,8 @@
     <div class="description">
        <% if action_name == 'shortlistings' %>
         <div class="shortlisting_buttons">
-         <a href="tel:<%= restaurant.phone_number %>" data-icon="phone ui-icon-alt" data-role="button" data-iconpos="notext" class="call"></a>
-        <a href="https://www.google.com/maps/place/<%= restaurant.paramaterised_address %>" data-icon="navigation" data-iconpos="notext" data-role="button" class="directions"  target="_blank"></a>
+         <a href="tel:<%= restaurant.phone_number %>" data-icon="phone ui-icon-alt" data-role="button" data-iconpos="notext" class="call" id="c<%= restaurant.id %>"></a>
+         <a href="https://www.google.com/maps/place/<%= restaurant.paramaterised_address %>" data-icon="navigation" data-iconpos="notext" data-role="button" class="directions"  target="_blank" id="d<%= restaurant.id %>"></a>
         </div>
       <% end %>
      <%= restaurant.description %>

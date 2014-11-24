@@ -134,7 +134,7 @@ $(function() {
         shortlist.push(cards[current_card]);
         $("#shortlist_count").html(shortlist.length);    
         successful_swipe = true;
-        recordClick("Discarded Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"));
+        recordClick("Shortlisted Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"), $(cards[current_card]).attr("id"));
       }
     } else {
       if (ever_no || confirm("Swiping left will discard this restaurant. Are you sure?")){
@@ -154,13 +154,13 @@ $(function() {
           dataType: "json"
         });
         successful_swipe = true;    
-        recordClick("Shortlisted Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"));
+        recordClick("Discarded Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"), $(cards[current_card]).attr("id"));
       }
     }
     if (successful_swipe){
       current_card --;
-      $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone"));
-      $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address"));
+      $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone")).attr("id", "c" + $(cards[current_card]).attr("id"));
+      $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address")).attr("id", "d" + $(cards[current_card]).attr("id"));
       swiped_restaurant = true;
     } else {
       stack.getCard(cards[current_card]).throwIn(e.throwDirection, 0);
@@ -182,7 +182,7 @@ $(function() {
   $( '.swipebox' ).swipebox({
     afterClose: function(){
       if (duplicate_swipebox_event){
-        recordClick("Close Photo gallery");
+        recordClick("Close Photo gallery", null);
         duplicate_swipebox_event = false;
       } else {
         duplicate_swipebox_event = true;        
@@ -191,45 +191,29 @@ $(function() {
   });
 
   $(".call").on('click', function(){
-    recordClick("Call");
+    recordClick("Call", $(this).attr("id").slice(1));
   })
   $(".directions").on('click', function(){
-    recordClick("Directions");
+    recordClick("Directions", $(this).attr("id").slice(1));
   })
   $(".photo_container > a").on('click', function(){
-    recordClick("Photo zoom: photo_id = " + $(this).attr("id"))
+    recordClick("Photo zoom: photo_id = " + $(this).attr("id"), $(this).parent().parent().parent().attr("id"))
   })
   $("#shortlist_count").on('click', function(){
-    recordClick("Go to Shortlist");
+    recordClick("Go to Shortlist", $(cards[current_card]).attr("id"));
   })
   $(".back_to_search").on('click', function(){
-    recordClick("Back to Search")
+    recordClick("Back to Search", null)
   })
 
 });
 
 
-// function hideAddressBar()
-// {
-//   if(!window.location.hash)
-//   {
-//       if(document.height < window.outerHeight)
-//       {
-//           document.body.style.height = (window.outerHeight + 200) + 'px';
-//       }
- 
-//       setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
-//   }
-// }
- 
-// window.addEventListener("orientationchange", hideAddressBar );
-
-
-function recordClick(purpose){
+function recordClick(purpose, restaurant_id){
   $.ajax({
     url: "/clicks", 
     type: 'POST',
-    data: {click: {dinder_search_id: search_id, purpose: purpose, yelp_restaurant_id: $(cards[current_card]).attr("id")}},
+    data: {click: {dinder_search_id: search_id, purpose: purpose, yelp_restaurant_id: restaurant_id}},
     dataType: "json"
   });
 }

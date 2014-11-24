@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, :only => :update
-  resources :clicks, :only => :create
+  resources :clicks, :only => [:create, :index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

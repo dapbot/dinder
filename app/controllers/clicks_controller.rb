@@ -3,7 +3,10 @@ class ClicksController < ApplicationController
   # GET /clicks
   # GET /clicks.json
   def index
-    @clicks = Click.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data Click.to_csv }
+    end
   end
 
   # POST /clicks

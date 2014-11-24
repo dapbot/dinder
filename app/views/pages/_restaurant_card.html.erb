@@ -16,7 +16,10 @@
     </div>
   </div>
   <div class="dinder_score <%= restaurant.dinder_score_colour %>">
-    <%= restaurant.dinder_score.to_i %>
+    <span class="score_value">
+      <%= restaurant.dinder_score.to_i %>
+    </span>
+    <span class="score_out_of">/100</span>
   </div>
   <div class="name">
     <div class="left">

@@ -137,13 +137,22 @@ body {
 
 .restaurant .dinder_score {
   position:absolute;
-  padding: 15px;
-  width: 20px;
-  height: 20px;
+  /*width: 58px;*/
+  height: 30px;
+  padding: 8px;
   top: 0px;
   left: 0px;
   color: #fff;
   font-weight: bold;
+}
+
+.restaurant .dinder_score .score_value {
+  font-size: 20px;
+}
+
+.restaurant .dinder_score .score_out_of {
+  font-size: 12px;
+  font-weight: normal;
 }
 
 .restaurant .dinder_score.green {

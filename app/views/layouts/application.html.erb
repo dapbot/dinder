@@ -10,7 +10,7 @@
     ever_no = <%= current_user && current_user.ever_swiped_no %>;
     ever_yes = <%= current_user && current_user.ever_swiped_yes %>;
     current_user_id = <%= current_user ? current_user.id : nil %>;
-    search_id = <%= current_user ? current_user.active_dinder_search.id : nil %>;
+    search_id = <%= current_user && current_user.active_dinder_search ? current_user.active_dinder_search.id : nil %>;
   <% end %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>

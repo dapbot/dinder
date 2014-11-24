@@ -26,7 +26,7 @@
       <%= restaurant.name %>
     </div>
     <div class="right">
-      <%= '%.1f' % restaurant.distance_to( @lat_lng ) %> km
+      <%= ((restaurant.distance_to(@lat_lng) * 100).round * 10).to_s  %>m
     </div>
     <div class="clear"></div>
   </div>

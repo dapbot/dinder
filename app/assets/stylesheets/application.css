@@ -70,6 +70,10 @@ body {
   position: relative;
 }
 
+.shortlistings .restaurant:last-child {
+  margin-bottom: 25px;
+}
+
 .restaurant .name {
 	height: 25px;
 	padding: 10px 10px 5px 10px ;

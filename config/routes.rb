@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       put 'add_no'
       put 'shortlist'
       get 'shortlistings'
+      get 'load_more'
     end
   end
 

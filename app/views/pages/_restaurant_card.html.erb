@@ -1,4 +1,4 @@
-<div class="restaurant <%= action_name == 'shortlistings' ? '' : 'stacked' %>" id="<%= restaurant.id %>" data-telephone="<%= restaurant.phone_number || '' %>" data-address="<%= restaurant.paramaterised_address || '' %>">
+<div class="restaurant <%= action_name == 'shortlistings' ? '' : 'stacked' %> <%= action_name == 'load_more' ? 'load_more' : '' %>" id="<%= restaurant.id %>" data-telephone="<%= restaurant.phone_number || '' %>" data-address="<%= restaurant.paramaterised_address || '' %>">
 
   <div class="photos">
     <div class="first_row">

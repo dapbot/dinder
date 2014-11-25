@@ -1,0 +1,3 @@
+<% @restaurants[0..9].reverse.each do |restaurant| %>
+  <%= render partial: 'pages/restaurant_card', locals: { restaurant: restaurant }  %>
+<% end %>

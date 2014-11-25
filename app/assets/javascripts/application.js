@@ -48,9 +48,7 @@ config = {
   }
 }
 
-$(function() {
-  $("div.ui-page").css("min-height", window.outerHeight)
-  
+function setup_card_css_and_javascript() {
   $(".restaurant").css("height", $(".restaurant").width() + 30)
 
   $(".first_row").css("height", Math.floor($(".restaurant").width() * 2 / 3) - 2);
@@ -58,23 +56,44 @@ $(function() {
   $(".photo_container").each(function(){
     $(this).css("height", $(this).width());
   })
-  // $(".photo_container").each(function(){
-  //   if($(this).width() > $(this).children("img").first.width()){
-  //     $(this).children("img").css("width", $(this).width())
-  //   } else if($(this).height() > $(this).children("img").first.height()){
-  //     $(this).children("img").css("height", $(this).height())
-  //   }    
-  // })
-  // $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
-  // if (window.resized_images == false){
-  //   $(".first_row").css("height", $(".image_1").height());
-  //   $(".extended").css("height", Math.min($(".image_4").height(), $(".image_5").height(), $(".image_6").height()));
-  //   window.resized_images = true;
-  //   alert("bang!");
-  // }
+
+  $( '.swipebox' ).swipebox({
+    afterClose: function(){
+      if (duplicate_swipebox_event){
+        recordClick("Close Photo gallery", null);
+        duplicate_swipebox_event = false;
+      } else {
+        duplicate_swipebox_event = true;        
+      }
+    }
+  });
+
+  $(".call").on('click', function(){
+    recordClick("Call", $(this).attr("id").slice(1));
+  })
+  $(".directions").on('click', function(){
+    recordClick("Directions", $(this).attr("id").slice(1));
+  })
+  $(".photo_container > a").on('click', function(){
+    recordClick("Photo zoom: photo_id = " + $(this).attr("id"), $(this).parent().parent().parent().attr("id"))
+  })
+  $("#shortlist_count").on('click', function(){
+    recordClick("Go to Shortlist", $(cards[current_card]).attr("id"));
+  })
+  $(".back_to_search").on('click', function(){
+    recordClick("Back to Search", null)
+  })
+
+}
+
+$(function() {
+  $("div.ui-page").css("min-height", window.outerHeight)
+  
+  setup_card_css_and_javascript();
 
   // Prepare the cards in the stack for iteration.
   cards = [].slice.call(document.querySelectorAll('div.container div.restaurant.stacked'))
+  cards = cards.reverse();
 
   // An instance of the Stack is used to attach event listeners.
   stack = gajus.Swing.Stack(config);
@@ -84,7 +103,7 @@ $(function() {
       stack.createCard(targetElement);
   });
 
-  current_card = cards.length - 1;
+  current_card = 0;
 
   // if(!window.pageYOffset){ hideAddressBar(); }
 
@@ -158,7 +177,8 @@ $(function() {
       }
     }
     if (successful_swipe){
-      current_card --;
+      current_card ++;
+      check_to_load_more_cards();
       $(".call").attr("href", "tel:" + $(cards[current_card]).data("telephone")).attr("id", "c" + $(cards[current_card]).attr("id"));
       $(".directions").attr("href", "https://maps.google.com/maps/place/" + $(cards[current_card]).data("address")).attr("id", "d" + $(cards[current_card]).attr("id"));
       swiped_restaurant = true;
@@ -179,34 +199,8 @@ $(function() {
     e.preventDefault();
   });
 
-  $( '.swipebox' ).swipebox({
-    afterClose: function(){
-      if (duplicate_swipebox_event){
-        recordClick("Close Photo gallery", null);
-        duplicate_swipebox_event = false;
-      } else {
-        duplicate_swipebox_event = true;        
-      }
-    }
-  });
-
-  $(".call").on('click', function(){
-    recordClick("Call", $(this).attr("id").slice(1));
-  })
-  $(".directions").on('click', function(){
-    recordClick("Directions", $(this).attr("id").slice(1));
-  })
-  $(".photo_container > a").on('click', function(){
-    recordClick("Photo zoom: photo_id = " + $(this).attr("id"), $(this).parent().parent().parent().attr("id"))
-  })
-  $("#shortlist_count").on('click', function(){
-    recordClick("Go to Shortlist", $(cards[current_card]).attr("id"));
-  })
-  $(".back_to_search").on('click', function(){
-    recordClick("Back to Search", null)
-  })
-
 });
+
 
 
 function recordClick(purpose, restaurant_id){
@@ -216,6 +210,26 @@ function recordClick(purpose, restaurant_id){
     data: {click: {dinder_search_id: search_id, purpose: purpose, yelp_restaurant_id: restaurant_id}},
     dataType: "json"
   });
+}
+
+function check_to_load_more_cards(){
+  if (cards.length - 4 < current_card){
+    $(function(){
+      $.get("/dinder_searches/" + search_id + "/load_more.html?skip=" + (cards.length - current_card), function(data){
+        $(".container").prepend(data);
+        $(".load_more").each(function(){
+          stack.createCard(this);    
+        })
+        setup_card_css_and_javascript();
+        more_cards = [].slice.call(document.querySelectorAll('div.container div.restaurant.load_more'))
+        more_cards = more_cards.reverse();
+        cards = cards.concat(more_cards);
+        $('div.container div.restaurant.load_more').each(function(){
+          $(this).removeClass("load_more");
+        })
+      });
+    })
+  }
 }
 
 function OnImageLoad(evt) {

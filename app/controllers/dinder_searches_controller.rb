@@ -1,5 +1,5 @@
 class DinderSearchesController < ApplicationController
-  before_action :set_dinder_search, only: [:show, :edit, :update, :destroy, :add_no, :shortlist, :shortlistings]
+  before_action :set_dinder_search, only: [:show, :edit, :update, :destroy, :add_no, :shortlist, :shortlistings, :load_more]
 
   # GET /dinder_searches
   # GET /dinder_searches.json
@@ -20,10 +20,19 @@ class DinderSearchesController < ApplicationController
     if @lat_lng
       params[:lat_lng] ||= @lat_lng.join("|")
       @search = @dinder_search
-      @search.touch
+      @search.update_attributes(lat_lng: params[:lat_lng])
       @restaurants = @search.results
     end
     render '/pages/dinder'
+  end
+    
+  def load_more
+    @search = @dinder_search
+    @lat_lng = @dinder_search.lat_lng.split("|")
+    @search.touch
+    restaurants_to_skip = params[:skip].to_i || 0
+    @restaurants = @search.results[restaurants_to_skip..-1]
+    render 'load_more', layout: false
   end
 
   # GET /dinder_searches/new
@@ -43,10 +52,14 @@ class DinderSearchesController < ApplicationController
     respond_to do |format|
       if @dinder_search.save
         format.html { redirect_to @dinder_search, notice: 'Dinder search was successfully created.' }
-        format.json { render :show, status: :created, location: @dinder_search }
+        format.js { 
+          render :show_more 
+        }
       else
         format.html { render :new }
-        format.json { render json: @dinder_search.errors, status: :unprocessable_entity }
+        format.js { 
+          render plain: "Whoops. There was a problem loading more cards."
+        }
       end
     end
   end

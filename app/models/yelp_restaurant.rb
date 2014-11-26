@@ -54,6 +54,17 @@ class YelpRestaurant < ActiveRecord::Base
     photos.from_source("Yelp").length > 5 ? photos.from_source("Yelp") : photos.from_source("Yelp") + photos.from_source("Instagram")
   end
 
+  def open_state
+    current_time = Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min
+    current_opening_period = self.opening_periods.where("opens_at < :current_time_plus_one and closes_at > :current_time", current_time_plus_one: current_time + 60, current_time: current_time).first
+    state = ""
+    if current_opening_period.nil? == false
+      state = "Closes in " + (current_opening_period.closes_at - current_time).to_s + " minutes" if current_opening_period.closes_at - current_time < 60
+      state = "Opens in " + (current_opening_period.opens_at - current_time).to_s + " minutes" if current_opening_period.opens_at - current_time > 0
+    end
+    state
+  end
+
   def description
     result = ""
     result += tags.map(&:name).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ") + (tags.length > 0 ? ", " : "")
@@ -61,7 +72,7 @@ class YelpRestaurant < ActiveRecord::Base
     result += noise_level && noise_level > 2 ? "Noisy, " : "" 
     result += ambience.nil? ? "" : ambience + ", "
     result = result[0..-3]
-    result = result[0..50] + "..." if result.length > 60
+    result = result[0..45] + "..." if result.length > 60
     result.html_safe
   end
 
@@ -328,7 +339,7 @@ class YelpRestaurant < ActiveRecord::Base
     end
   end
 
-	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time AND opening_periods.closes_at > :current_time)", current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
+	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time_plus_one_hour AND opening_periods.closes_at > :current_time)", current_time_plus_one_hour: (Time.zone.now.wday * 24 * 60 + (Time.zone.now.hour + 1) * 60 + Time.zone.now.min), current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
 
   def self.affordable
     where("price < 3")

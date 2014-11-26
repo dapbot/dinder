@@ -38,7 +38,10 @@
          <a href="https://www.google.com/maps/place/<%= restaurant.paramaterised_address %>" data-icon="navigation" data-iconpos="notext" data-role="button" class="directions"  target="_blank" id="d<%= restaurant.id %>"></a>
         </div>
       <% end %>
-     <%= restaurant.description %>
+      <div>
+       <span class="open_state"><%= restaurant.open_state != "" ? restaurant.open_state + ", " : "" %></span>
+        <%= restaurant.description %>
+      </div>
       <div class="price">
         <%= restaurant.price_html.html_safe %>
       </div>

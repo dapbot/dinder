@@ -256,6 +256,11 @@ body {
 	padding: 0px 10px;
 }
 
+.open_state {
+  color: #cc0900;
+  font-style: italic;
+}
+
 .no_hover, .yes_hover {
   position: absolute;
   top:25px;

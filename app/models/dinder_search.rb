@@ -35,7 +35,7 @@ class DinderSearch < ActiveRecord::Base
 	def results
     results = YelpRestaurant.where(nil)
     # results = results.select("dinder_score * ((0.85) ^ (#{distance_query} * 10)) as adjusted_dinder_score")
-    results = results.select("dinder_score * exp(-1.0 * exp(((#{distance_query}) * 4) - 4)) as adjusted_dinder_score")
+    results = results.select("(dinder_score * exp(-1.0 * exp(((#{distance_query}) * 4) - 4)))  * (1 - (0.20 * GREATEST(0, price - 2))) as adjusted_dinder_score")
     results = results.near(lat_lng.split("|"), 1.5)
     results = results.open_now
     results = results.affordable

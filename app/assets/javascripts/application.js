@@ -214,8 +214,12 @@ function recordClick(purpose, restaurant_id){
 
 function check_to_load_more_cards(){
   if (cards.length - 4 < current_card){
+    var card_ids = [];
+    cards.forEach(function(card){
+      card_ids.push($(card).attr("id"));
+    })
     $(function(){
-      $.get("/dinder_searches/" + search_id + "/load_more.html?skip=" + (cards.length - current_card), function(data){
+      $.post("/dinder_searches/" + search_id + "/load_more.html", { card_ids: card_ids}, function(data){
         $(".container").prepend(data);
         $(".load_more").each(function(){
           stack.createCard(this);    

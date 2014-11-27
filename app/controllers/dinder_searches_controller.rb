@@ -27,11 +27,11 @@ class DinderSearchesController < ApplicationController
   end
     
   def load_more
+    logger.debug "EXISTING CARDS ARE: " + params[:card_ids].to_s
     @search = @dinder_search
     @lat_lng = @dinder_search.lat_lng.split("|")
     @search.touch
-    restaurants_to_skip = params[:skip].to_i || 0
-    @restaurants = @search.results[restaurants_to_skip..-1]
+    @restaurants = @search.results(params[:card_ids].map(&:to_i))
     render 'load_more', layout: false
   end
 

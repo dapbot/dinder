@@ -32,13 +32,14 @@ class DinderSearch < ActiveRecord::Base
     self
   end
 
-	def results
+	def results(restaurants_to_skip = nil)
     results = YelpRestaurant.where(nil)
     # results = results.select("dinder_score * ((0.85) ^ (#{distance_query} * 10)) as adjusted_dinder_score")
     results = results.select("(dinder_score * exp(-1.0 * exp(((#{distance_query}) * 4) - 4)))  * (1 - (0.20 * GREATEST(0, price - 2))) as adjusted_dinder_score")
     results = results.near(lat_lng.split("|"), 1.5)
     results = results.open_now
     results = results.affordable
+    results = results.where("id NOT IN (?)", restaurants_to_skip) if restaurants_to_skip
     results = results.where("yelp_restaurants.id NOT IN (SELECT yelp_restaurant_id FROM unwanted_restaurant_tags WHERE dinder_search_id = #{self.id})") if unwanted_restaurants.count > 0
     results = results.where("yelp_restaurants.id NOT IN (SELECT yelp_restaurant_id FROM shortlistings WHERE dinder_search_id = #{self.id})") if shortlistings.count > 0
     # results = results.reorder("distance / 2 ASC").limit(10).sort_by {|r| r.distance_to( lat_lng.split("|") )}

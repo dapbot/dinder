@@ -32,6 +32,8 @@ body {
 
  .container.shortlistings {
   overflow: visible;
+  position: relative;
+  top: 0px;
  }
 
  .left {

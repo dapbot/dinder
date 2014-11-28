@@ -11,13 +11,18 @@
   		<% @restaurants[0..9].reverse.each do |restaurant| %>
   			<%= render partial: 'pages/restaurant_card', locals: { restaurant: restaurant }  %>
   		<% end %>
-  	<% end %>
+  	<% else %>
+      <div class="warn_note">To use Whats' Cooking, please turn on location services</div>
+    <% end %>
   </div>
 
-  <div class="footer-panel">
-    <%= link_to "", "#", class: "no", id: "no_button", data: {role: "button", icon: "delete", theme: "d", iconpos: "notext"}, method: :put %>
-    <a href="tel:<%= @restaurants.empty? ? "" : @restaurants.first.phone_number %>" data-icon="phone ui-icon-alt" data-role="button" data-iconpos="notext" class="call"></a>
-    <a href="https://www.google.com/maps/place/<%= @restaurants.nil? ? "" : @restaurants.first.paramaterised_address %>" data-icon="navigation" data-iconpos="notext" data-role="button" class="directions" target="_blank"></a>
-    <%= link_to "", "#", class: "yes", id: "yes_button", data: {role: "button", icon: "star", theme: "b", iconpos: "notext"}, method: :put %>
-  </div>
+  <% if @lat_lng %>
+
+    <div class="footer-panel">
+      <%= link_to "", "#", class: "no", id: "no_button", data: {role: "button", icon: "delete", theme: "d", iconpos: "notext"}, method: :put %>
+      <a href="tel:<%= @restaurants.empty? ? "" : @restaurants.first.phone_number %>" data-icon="phone ui-icon-alt" data-role="button" data-iconpos="notext" class="call"></a>
+      <a href="https://www.google.com/maps/place/<%= @restaurants.nil? ? "" : @restaurants.first.paramaterised_address %>" data-icon="navigation" data-iconpos="notext" data-role="button" class="directions" target="_blank"></a>
+      <%= link_to "", "#", class: "yes", id: "yes_button", data: {role: "button", icon: "star", theme: "b", iconpos: "notext"}, method: :put %>
+    </div>
+  <% end %>
 <% end %>

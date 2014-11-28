@@ -56,11 +56,28 @@ class YelpRestaurant < ActiveRecord::Base
 
   def open_state
     current_time = Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min
-    current_opening_period = self.opening_periods.where("opens_at < :current_time_plus_one and closes_at > :current_time", current_time_plus_one: current_time + 60, current_time: current_time).first
+    if Time.zone.now.hour > 15 && Time.zone.now.hour < 20
+      current_time_increment = 300
+    else
+      current_time_increment = 60
+    end
+    current_opening_period = self.opening_periods.where("opens_at < :current_time_plus_one and closes_at > :current_time", current_time_plus_one: current_time + current_time_increment, current_time: current_time).first
     state = ""
     if current_opening_period.nil? == false
-      state = "Closes in " + (current_opening_period.closes_at - current_time).to_s + " minutes" if current_opening_period.closes_at - current_time < 60
-      state = "Opens in " + (current_opening_period.opens_at - current_time).to_s + " minutes" if current_opening_period.opens_at - current_time > 0
+      if current_opening_period.closes_at - current_time < 240
+        # state = "Closes in " + (current_opening_period.closes_at - current_time).to_s + " mins"
+        state = "Closes at " + ((current_opening_period.closes_at_24 % (12 * 60)) / 60).floor.to_s + ":" + ("%02d" % (current_opening_period.closes_at_24 % 60)) + (current_opening_period.closes_at_24 > (12 * 60) ? "PM" : "AM")
+        if (next_opening = self.opening_periods.where("opens_at > ? and opens_at < ?", current_opening_period.closes_at, (1 + Time.zone.now.wday) * 24 * 60).first).nil? == false
+          state += ", opens again at " + ((next_opening.opens_at_24 % (12 * 60)) / 60).floor.to_s + ":" + ("%02d" % (next_opening.opens_at_24 % 60)) + (next_opening.opens_at_24 > (12 * 60) ? "PM" : "AM")
+        end
+      end
+      if current_opening_period.opens_at - current_time > 0
+        # if current_opening_period.opens_at - current_time < 60
+        #   state = "Opens in " + (current_opening_period.opens_at - current_time).to_s + " mins" 
+        # else
+          state = "Opens at " + ((current_opening_period.opens_at_24 % (12 * 60)) / 60).floor.to_s + ":" + ("%02d" % (current_opening_period.opens_at_24 % 60)) + (current_opening_period.opens_at_24 > (12 * 60) ? "PM" : "AM")
+        # end
+      end
     end
     state
   end
@@ -339,10 +356,10 @@ class YelpRestaurant < ActiveRecord::Base
     end
   end
 
-	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time_plus_one_hour AND opening_periods.closes_at > :current_time)", current_time_plus_one_hour: (Time.zone.now.wday * 24 * 60 + (Time.zone.now.hour + 1) * 60 + Time.zone.now.min), current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
+	scope :open_now, lambda{ where("EXISTS (SELECT 1 FROM opening_periods WHERE opening_periods.openable_type = 'YelpRestaurant' and opening_periods.openable_id = yelp_restaurants.id AND opening_periods.opens_at < :current_time_plus AND opening_periods.closes_at > :current_time)", current_time_plus: (Time.zone.now.wday * 24 * 60 + (Time.zone.now.hour > 15 && Time.zone.now.hour < 20 ? 20 : Time.zone.now.hour + 1) * 60 + Time.zone.now.min), current_time: (Time.zone.now.wday * 24 * 60 + Time.zone.now.hour * 60 + Time.zone.now.min)) }
 
   def self.affordable
-    where("price < 3")
+    where("price < 4")
   end
 
   def self.to_csv

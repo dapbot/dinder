@@ -119,6 +119,10 @@ class YelpRestaurant < ActiveRecord::Base
     end
   end
 
+  def on_urbanspoon
+    Restaurant.where("latitude > ? and latitude < ? and longitude > ? and longitude < ?", latitude - 0.005, latitude + 0.005, longitude - 0.005, longitude + 0.005).select{|x| x.name.similarity_to(self.name) > 0.3}.sort{|x,y| self.name.similarity_to(x.name) <=> self.name.similarity_to(y.name)}[-1]
+  end
+
   def self.accessible_attributes
     ["dinder_score"]
   end
@@ -364,9 +368,13 @@ class YelpRestaurant < ActiveRecord::Base
 
   def self.to_csv
     CSV.generate do |csv|
-      csv << column_names
-      all.each do |product|
-        csv << product.attributes.values_at(*column_names)
+      csv << (column_names + ["Urbanspoon Name", "Urbanspoon Rating"])
+      near("Surry Hills NSW 2010", 2).each do |product|
+        if urbanspoon_r = product.on_urbanspoon
+          csv << (product.attributes.values_at(*column_names) + [ urbanspoon_r.name, urbanspoon_r.rating])
+        else
+          csv << (product.attributes.values_at(*column_names) + ["", ""])
+        end
       end
     end
   end

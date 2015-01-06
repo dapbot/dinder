@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124042312) do
+ActiveRecord::Schema.define(version: 20141202051053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,38 +65,6 @@ ActiveRecord::Schema.define(version: 20141124042312) do
     t.string   "taggable_type"
   end
 
-  create_table "restaurants", force: true do |t|
-    t.string   "name"
-    t.string   "suburb"
-    t.text     "address"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.integer  "rating"
-    t.text     "url"
-    t.integer  "price"
-    t.string   "urbanspoon_id"
-    t.string   "phone_number"
-    t.text     "website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "opening_hours_last_fetched"
-    t.string   "google_place_id"
-    t.integer  "urbanspoon_ranking"
-    t.integer  "yelp_price"
-    t.boolean  "yelp_take_away"
-    t.boolean  "yelp_good_for_groups"
-    t.boolean  "yelp_good_for_children"
-    t.integer  "yelp_noise_level"
-    t.string   "yelp_alcohol"
-    t.boolean  "yelp_reservations"
-    t.string   "yelp_ambience"
-    t.float    "yelp_score"
-    t.integer  "yelp_review_count"
-    t.text     "yelp_photo_url"
-    t.string   "yelp_business_id"
-    t.datetime "yelp_last_fetched"
-  end
-
   create_table "shortlistings", force: true do |t|
     t.integer  "yelp_restaurant_id"
     t.integer  "dinder_search_id"
@@ -115,6 +83,27 @@ ActiveRecord::Schema.define(version: 20141124042312) do
     t.integer  "dinder_search_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "urbanspoon_restaurants", force: true do |t|
+    t.string   "name"
+    t.string   "suburb"
+    t.text     "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "rating"
+    t.text     "url"
+    t.integer  "price"
+    t.string   "urbanspoon_id"
+    t.string   "phone_number"
+    t.text     "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "opening_hours_last_fetched"
+    t.string   "google_place_id"
+    t.integer  "urbanspoon_ranking"
+    t.string   "yelp_business_id"
+    t.datetime "yelp_last_fetched"
   end
 
   create_table "users", force: true do |t|

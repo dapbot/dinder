@@ -1,0 +1,254 @@
+id,name,created_at,updated_at,rename,tag_type,name2
+1,Bakery,2014-11-08 14:44:20 +1100,2014-11-08 14:44:20 +1100,bakery,Venue_type_0,bakery
+2,Coffee,2014-11-08 14:44:20 +1100,2014-11-08 14:44:20 +1100,cafe,Venue_type_1,cafe
+3,Breakfast,2014-11-08 14:44:20 +1100,2014-11-08 14:44:20 +1100,breakfast,Dish_type,breakfast
+4,Chinese,2014-11-08 14:44:23 +1100,2014-11-08 14:44:23 +1100,Chinese,Cuisine,Chinese
+5,Asian,2014-11-08 14:44:23 +1100,2014-11-08 14:44:23 +1100,Asian,Cuisine,Asian
+6,Taiwanese,2014-11-08 14:44:23 +1100,2014-11-08 14:44:23 +1100,Taiwanese,Cuisine,Taiwanese
+7,Dessert,2014-11-08 14:44:25 +1100,2014-11-08 14:44:25 +1100,dessert,Dish_type,dessert
+8,Italian,2014-11-08 14:44:25 +1100,2014-11-08 14:44:25 +1100,Italian,Cuisine,Italian
+9,Ice Cream/Gelato,2014-11-08 14:44:25 +1100,2014-11-08 14:44:25 +1100,frozen dessert,Dish_type,frozen dessert
+10,Malaysian,2014-11-08 14:44:27 +1100,2014-11-08 14:44:27 +1100,Malaysian,Cuisine,Malaysian
+11,Thai,2014-11-08 14:44:29 +1100,2014-11-08 14:44:29 +1100,Thai,Cuisine,Thai
+12,Japanese,2014-11-08 14:44:33 +1100,2014-11-08 14:44:33 +1100,Japanese,Cuisine,Japanese
+13,Modern,2014-11-08 14:44:33 +1100,2014-11-08 14:44:33 +1100,modern,Delete,
+14,French,2014-11-08 14:44:37 +1100,2014-11-08 14:44:37 +1100,French,Cuisine,French
+15,Seafood,2014-11-08 14:44:37 +1100,2014-11-08 14:44:37 +1100,seafood,Dish_type,seafood
+16,Wine Bar,2014-11-08 14:44:39 +1100,2014-11-08 14:44:39 +1100,wine bar,Venue_type_2,wine bar
+17,Middle Eastern,2014-11-08 14:44:41 +1100,2014-11-08 14:44:41 +1100,Middle Eastern,Cuisine,Middle Eastern
+18,Steakhouse,2014-11-08 14:44:47 +1100,2014-11-08 14:44:47 +1100,steakhouse,Venue_type_0,steakhouse
+19,Barbecue,2014-11-08 14:44:47 +1100,2014-11-08 14:44:47 +1100,barbecue,Dish_type,barbecue
+20,Noodle Shop,2014-11-08 14:44:49 +1100,2014-11-08 14:44:49 +1100,noodles,Dish_type,noodles
+21,English/Irish,2014-11-08 15:58:47 +1100,2014-11-08 15:58:47 +1100,English/Irish,Cuisine,English/Irish
+22,Vegetarian,2014-11-08 15:58:47 +1100,2014-11-08 15:58:47 +1100,vegetarian,Dietary_type,vegetarian
+23,Teriyaki,2014-11-08 15:59:01 +1100,2014-11-08 15:59:01 +1100,teriyaki,Dish_type,teriyaki
+24,Cocktails,2014-11-08 15:59:03 +1100,2014-11-08 15:59:03 +1100,cocktails,Dish_type,cocktails
+25,Mexican,2014-11-08 15:59:05 +1100,2014-11-08 15:59:05 +1100,Mexican,Cuisine,Mexican
+26,Tacos,2014-11-08 15:59:05 +1100,2014-11-08 15:59:05 +1100,tacos,Dish_type,tacos
+27,Hot Dogs/Sausages,2014-11-08 15:59:05 +1100,2014-11-08 15:59:05 +1100,hot dogs/sausages,Dish_type,hot dogs/sausages
+28,Spanish,2014-11-08 15:59:08 +1100,2014-11-08 15:59:08 +1100,Spanish,Cuisine,Spanish
+29,Latin American,2014-11-08 15:59:08 +1100,2014-11-08 15:59:08 +1100,Latin American,Cuisine,Latin American
+30,Tapas,2014-11-08 15:59:08 +1100,2014-11-08 15:59:08 +1100,tapas,Dish_type,tapas
+31,Turkish,2014-11-08 15:59:10 +1100,2014-11-08 15:59:10 +1100,Turkish,Cuisine,Turkish
+32,Burgers,2014-11-08 15:59:12 +1100,2014-11-08 15:59:12 +1100,burgers,Dish_type,burgers
+33,Mediterranean,2014-11-08 15:59:15 +1100,2014-11-08 15:59:15 +1100,Mediterranean,Cuisine,Mediterranean
+34,Korean,2014-11-08 15:59:23 +1100,2014-11-08 15:59:23 +1100,Korean,Cuisine,Korean
+35,Vietnamese,2014-11-08 15:59:32 +1100,2014-11-08 15:59:32 +1100,Vietnamese,Cuisine,Vietnamese
+36,Pub Food,2014-11-08 15:59:38 +1100,2014-11-08 15:59:38 +1100,pub,Venue_type_0,pub
+37,Kosher,2014-11-08 15:59:40 +1100,2014-11-08 15:59:40 +1100,kosher,Dietary_type,kosher
+38,Ramen,2014-11-08 15:59:42 +1100,2014-11-08 15:59:42 +1100,ramen,Dish_type,ramen
+39,American,2014-11-08 15:59:46 +1100,2014-11-08 15:59:46 +1100,American,Cuisine,American
+40,Sushi,2014-11-08 15:59:52 +1100,2014-11-08 15:59:52 +1100,sushi,Dish_type,sushi
+41,Caribbean,2014-11-08 16:00:00 +1100,2014-11-08 16:00:00 +1100,Caribbean,Cuisine,Caribbean
+42,African,2014-11-08 16:00:00 +1100,2014-11-08 16:00:00 +1100,African,Cuisine,African
+43,Indian,2014-11-08 16:00:00 +1100,2014-11-08 16:00:00 +1100,Indian,Cuisine,Indian
+44,German,2014-11-08 16:00:04 +1100,2014-11-08 16:00:04 +1100,German,Cuisine,German
+45,Pizza,2014-11-08 16:00:06 +1100,2014-11-08 16:00:06 +1100,pizza,Dish_type,pizza
+46,International,2014-11-08 16:00:14 +1100,2014-11-08 16:00:14 +1100,international,Delete,
+47,European,2014-11-08 16:00:34 +1100,2014-11-08 16:00:34 +1100,European,Cuisine,European
+48,Sandwiches/Subs,2014-11-08 16:00:41 +1100,2014-11-08 16:00:41 +1100,sandwiches,Dish_type,sandwiches
+49,Brazilian,2014-11-08 16:01:02 +1100,2014-11-08 16:01:02 +1100,Brazilian,Cuisine,Brazilian
+50,Buffet,2014-11-08 16:01:02 +1100,2014-11-08 16:01:02 +1100,buffet,Dish_type,buffet
+51,Yum Cha,2014-11-08 16:01:06 +1100,2014-11-08 16:01:06 +1100,yum cha,Dish_type,yum cha
+52,Indonesian,2014-11-08 16:01:46 +1100,2014-11-08 16:01:46 +1100,Indonesian,Cuisine,Indonesian
+53,Gastropub,2014-11-08 16:02:49 +1100,2014-11-08 16:02:49 +1100,gastropub,Venue_type_0,gastropub
+54,Pakistani,2014-11-08 16:03:28 +1100,2014-11-08 16:03:28 +1100,Pakistani,Cuisine,Pakistani
+55,Nepalese/Tibetan,2014-11-08 16:03:33 +1100,2014-11-08 16:03:33 +1100,Nepalese/Tibetan,Cuisine,Nepalese/Tibetan
+56,Australian,2014-11-08 16:04:23 +1100,2014-11-08 16:04:23 +1100,Australian,Cuisine,Australian
+57,Soup,2014-11-08 16:05:05 +1100,2014-11-08 16:05:05 +1100,soup,Dish_type,soup
+58,Moroccan,2014-11-08 16:05:13 +1100,2014-11-08 16:05:13 +1100,Moroccan,Cuisine,Moroccan
+59,Greek,2014-11-08 16:05:16 +1100,2014-11-08 16:05:16 +1100,Greek,Cuisine,Greek
+60,Bar,2014-11-08 16:05:35 +1100,2014-11-08 16:05:35 +1100,bar,Venue_type_2,bar
+61,Eastern European,2014-11-08 16:05:37 +1100,2014-11-08 16:05:37 +1100,Eastern European,Cuisine,Eastern European
+62,Diner,2014-11-08 16:05:57 +1100,2014-11-08 16:05:57 +1100,diner,Venue_type_0,diner
+63,Lebanese,2014-11-08 19:39:52 +1100,2014-11-08 19:39:52 +1100,Lebanese,Cuisine,Lebanese
+64,Smoothies,2014-11-08 19:41:22 +1100,2014-11-08 19:41:22 +1100,smoothies,Dish_type,smoothies
+65,Tea,2014-11-08 19:42:24 +1100,2014-11-08 19:42:24 +1100,tea,Dish_type,tea
+66,Southern/Soul,2014-11-08 19:42:28 +1100,2014-11-08 19:42:28 +1100,southern/soul,Cuisine,southern/soul
+67,Afghan,2014-11-08 19:43:03 +1100,2014-11-08 19:43:03 +1100,Afghan,Cuisine,Afghan
+68,Fish and Chips,2014-11-08 19:43:47 +1100,2014-11-08 19:43:47 +1100,fish & chips,Dish_type,fish & chips
+69,Salad,2014-11-08 19:44:20 +1100,2014-11-08 19:44:20 +1100,salad,Dish_type,salad
+70,Chicken,2014-11-08 19:50:32 +1100,2014-11-08 19:50:32 +1100,chicken,Dish_type,chicken
+71,Polish,2014-11-08 19:52:10 +1100,2014-11-08 19:52:10 +1100,Polish,Cuisine,Polish
+72,Portuguese,2014-11-08 19:53:39 +1100,2014-11-08 19:53:39 +1100,Portuguese,Cuisine,Portuguese
+73,Belgian,2014-11-08 19:56:33 +1100,2014-11-08 19:56:33 +1100,Belgian,Cuisine,Belgian
+74,Craft Beers,2014-11-08 20:01:42 +1100,2014-11-08 20:01:42 +1100,craft beers,Dish_type,craft beers
+75,Canadian,2014-11-08 20:03:35 +1100,2014-11-08 20:03:35 +1100,Canadian,Cuisine,Canadian
+76,Argentinian,2014-11-08 20:17:20 +1100,2014-11-08 20:17:20 +1100,Argentinian,Cuisine,Argentinian
+77,Donuts,2014-11-08 20:25:45 +1100,2014-11-08 20:25:45 +1100,donuts,Dish_type,donuts
+78,Cafe,2014-11-08 20:27:41 +1100,2014-11-08 20:27:41 +1100,cafe,Venue_type_1,cafe
+79,Native Australian,2014-11-09 22:25:53 +1100,2014-11-09 22:25:53 +1100,Native Australian,Cuisine,Native Australian
+80,Persian/Iranian,2014-11-10 03:36:44 +1100,2014-11-10 03:36:44 +1100,Persian/Iranian,Cuisine,Persian/Iranian
+81,Filipino,2014-11-10 03:40:15 +1100,2014-11-10 03:40:15 +1100,Filipino,Cuisine,Filipino
+82,Armenian,2014-11-10 04:06:10 +1100,2014-11-10 04:06:10 +1100,Armenian,Cuisine,Armenian
+83,Russian,2014-11-10 04:16:33 +1100,2014-11-10 04:16:33 +1100,Russian,Cuisine,Russian
+84,Hot Pot,2014-11-10 04:55:50 +1100,2014-11-10 04:55:50 +1100,hot pot,Dish_type,hot pot
+85,Fast Food,2014-11-10 04:56:27 +1100,2014-11-10 04:56:27 +1100,fast food,Dish_type,fast food
+86,Bubble Tea,2014-11-10 04:58:53 +1100,2014-11-10 04:58:53 +1100,bubble tea,Dish_type,bubble tea
+87,Bar & Grill,2014-11-10 05:06:37 +1100,2014-11-10 05:06:37 +1100,bar & grill,Venue_type_1,bar & grill
+88,Delicatessen,2014-11-10 05:39:26 +1100,2014-11-10 05:39:26 +1100,delicatessen,Venue_type_1,delicatessen
+89,Organic,2014-11-10 05:44:51 +1100,2014-11-10 05:44:51 +1100,organic,Dietary_type,organic
+90,Raw Food,2014-11-10 05:44:51 +1100,2014-11-10 05:44:51 +1100,raw food,Dietary_type,raw food
+91,Jazz & Blues,2014-11-17 04:24:17 +1100,2014-11-17 04:24:17 +1100,jazz & blues,Feature_1,jazz & blues
+92,Bars,2014-11-17 04:25:17 +1100,2014-11-17 04:25:17 +1100,bar,Venue_type_2,bar
+93,Tapas & Small Plates,2014-11-17 04:25:17 +1100,2014-11-17 04:25:17 +1100,tapas,Dish_type,tapas
+94,Cafes,2014-11-17 04:26:01 +1100,2014-11-17 04:26:01 +1100,cafe,Venue_type_1,cafe
+95,Specialty Food,2014-11-17 04:26:01 +1100,2014-11-17 04:26:01 +1100,specialty food,Delete,
+96,Breakfast & Brunch,2014-11-17 04:26:01 +1100,2014-11-17 04:26:01 +1100,breakfast,Dish_type,breakfast
+97,Modern Australian,2014-11-17 04:26:04 +1100,2014-11-17 04:26:04 +1100,Modern Australian,Cuisine,Modern Australian
+98,Coffee & Tea Shops,2014-11-17 04:26:13 +1100,2014-11-17 04:26:13 +1100,cafe,Venue_type_1,cafe
+99,Eastern European Restaurants ,2014-11-17 04:26:13 +1100,2014-11-17 04:26:13 +1100,Eastern European,Cuisine,Eastern European
+100,Food,2014-11-17 04:26:16 +1100,2014-11-17 04:26:16 +1100,food,Delete,
+101,Desserts,2014-11-17 04:26:19 +1100,2014-11-17 04:26:19 +1100,dessert,Dish_type,dessert
+102,Crepes,2014-11-17 04:26:19 +1100,2014-11-17 04:26:19 +1100,crepes,Dish_type,crepes
+103,Traditional American,2014-11-17 04:26:22 +1100,2014-11-17 04:26:22 +1100,American,Cuisine,American
+104,British,2014-11-17 04:26:45 +1100,2014-11-17 04:26:45 +1100,British,Cuisine,British
+105,Food Stands,2014-11-17 04:26:51 +1100,2014-11-17 04:26:51 +1100,food stand,Venue_type_0,food stand
+106,Sandwiches,2014-11-17 04:26:51 +1100,2014-11-17 04:26:51 +1100,sandwiches,Dish_type,sandwiches
+107,Takeaway & Fast Food,2014-11-17 04:27:07 +1100,2014-11-17 04:27:07 +1100,takeaway,Venue_type_0,takeaway
+108,Chicken Shop,2014-11-17 04:27:07 +1100,2014-11-17 04:27:07 +1100,chicken shop,Venue_type_0,chicken shop
+109,Vegan,2014-11-17 04:27:49 +1100,2014-11-17 04:27:49 +1100,vegan,Dietary_type,vegan
+110,Cocktail Bars,2014-11-17 04:28:17 +1100,2014-11-17 04:28:17 +1100,cocktail bar,Venue_type_2,cocktail bar
+111,Social Clubs,2014-11-17 04:28:48 +1100,2014-11-17 04:28:48 +1100,social club,Venue_type_2,social club
+112,Pubs,2014-11-17 04:29:00 +1100,2014-11-17 04:29:00 +1100,pub,Venue_type_0,pub
+113,Bottle Shop,2014-11-17 04:29:00 +1100,2014-11-17 04:29:00 +1100,a bottle shop,Delete,
+114,Asian Fusion Restaurants ,2014-11-17 04:29:24 +1100,2014-11-17 04:29:24 +1100,Asian fusion,Cuisine,Asian fusion
+115,Wine Bars,2014-11-17 04:29:53 +1100,2014-11-17 04:29:53 +1100,wine bar,Venue_type_2,wine bar
+116,Himalayan & Nepalese,2014-11-17 04:30:02 +1100,2014-11-17 04:30:02 +1100,Himalayan/Nepalese,Cuisine,Himalayan/Nepalese
+117,Delis,2014-11-17 04:30:12 +1100,2014-11-17 04:30:12 +1100,delicatessen,Venue_type_1,delicatessen
+118,Cheese Shops,2014-11-17 04:30:12 +1100,2014-11-17 04:30:12 +1100,cheese shop,Venue_type_3,cheese shop
+119,Meat Shops,2014-11-17 04:30:12 +1100,2014-11-17 04:30:12 +1100,delicatessen,Venue_type_1,delicatessen
+120,Hotels,2014-11-17 04:30:54 +1100,2014-11-17 04:30:54 +1100,hotel,Venue_type_prefix,hotel
+121,Diners,2014-11-17 04:30:57 +1100,2014-11-17 04:30:57 +1100,diner,Venue_type_0,diner
+122,Hairdressers,2014-11-17 04:31:16 +1100,2014-11-17 04:31:16 +1100,hairdressers,Delete,
+123,Gardening Centres,2014-11-17 04:31:16 +1100,2014-11-17 04:31:16 +1100,garden shop,Delete,
+124,Peruvian,2014-11-17 04:31:55 +1100,2014-11-17 04:31:55 +1100,Peruvian,Cuisine,Peruvian
+125,Gift Shops,2014-11-17 04:31:59 +1100,2014-11-17 04:31:59 +1100,gift shop,Delete,
+126,Jewellery,2014-11-17 04:31:59 +1100,2014-11-17 04:31:59 +1100,jewellery,Delete,
+127,Home Decor,2014-11-17 04:31:59 +1100,2014-11-17 04:31:59 +1100,homewares shop,Delete,
+128,Bakeries,2014-11-17 04:32:35 +1100,2014-11-17 04:32:35 +1100,bakery,Venue_type_0,bakery
+129,Gastro Pubs,2014-11-17 04:32:53 +1100,2014-11-17 04:32:53 +1100,gastropub,Venue_type_0,gastropub
+130,Music Venues,2014-11-17 04:32:53 +1100,2014-11-17 04:32:53 +1100,music,Feature_1,music
+131,Food Delivery,2014-11-17 04:32:58 +1100,2014-11-17 04:32:58 +1100,delivery,Delete,
+132,Butchers,2014-11-17 04:33:33 +1100,2014-11-17 04:33:33 +1100,butcher,Delete,
+133,Street Food,2014-11-17 04:34:01 +1100,2014-11-17 04:34:01 +1100,street food place,Venue_type_0,street food place
+134,Steakhouses,2014-11-17 04:34:04 +1100,2014-11-17 04:34:04 +1100,steakhouse,Venue_type_0,steakhouse
+135,Kebab,2014-11-17 04:34:22 +1100,2014-11-17 04:34:22 +1100,kebabs,Dish_type,kebabs
+136,Gluten Free,2014-11-17 04:39:29 +1100,2014-11-17 04:39:29 +1100,gluten free,Dietary_type,gluten free
+137,'Argentine,2014-11-17 04:40:00 +1100,2014-11-17 04:40:00 +1100,Argentinian,Cuisine,Argentinian
+138,Gelato,2014-11-17 04:41:12 +1100,2014-11-17 04:41:12 +1100,gelato,Dish_type,gelato
+139,Sports Bars,2014-11-17 04:41:44 +1100,2014-11-17 04:41:44 +1100,sports bar,Venue_type_2,sports bar
+140,Fish & Chips,2014-11-17 06:04:13 +1100,2014-11-17 06:04:13 +1100,fish & chips,Dish_type,fish & chips
+141,Lounges,2014-11-17 06:05:23 +1100,2014-11-17 06:05:23 +1100,lounge,Venue_type_2,lounge
+142,Modern European,2014-11-17 06:06:51 +1100,2014-11-17 06:06:51 +1100,Modern European,Cuisine,Modern European
+143,Motorcycle Dealers,2014-11-17 06:07:04 +1100,2014-11-17 06:07:04 +1100,motorcycle dealers,Delete,
+144,Accessories,2014-11-17 06:07:04 +1100,2014-11-17 06:07:04 +1100,accessories,Delete,
+145,Florists,2014-11-17 06:08:57 +1100,2014-11-17 06:08:57 +1100,florist,Delete,
+146,Izakaya,2014-11-17 06:09:08 +1100,2014-11-17 06:09:08 +1100,izakaya,Dish_type,izakaya
+147,Juice Bar & Smoothies,2014-11-17 06:11:39 +1100,2014-11-17 06:11:39 +1100,juice bar,Venue_type_2,juice bar
+148,Venues & Event Spaces,2014-11-17 06:13:29 +1100,2014-11-17 06:13:29 +1100,function space,Delete,
+149,Austrian,2014-11-17 06:14:16 +1100,2014-11-17 06:14:16 +1100,Austrian,Cuisine,Austrian
+150,Bistros,2014-11-17 06:15:56 +1100,2014-11-17 06:15:56 +1100,bistro,Venue_type_1,bistro
+151,Beer Gardens,2014-11-17 06:15:56 +1100,2014-11-17 06:15:56 +1100,beer garden,Feature_1,beer garden
+152,Supermarkets,2014-11-17 06:18:51 +1100,2014-11-17 06:18:51 +1100,grocer,Venue_type_3,grocer
+153,Bookshops,2014-11-17 06:20:48 +1100,2014-11-17 06:20:48 +1100,a bookshop,Delete,
+154,Concept Stores,2014-11-17 06:23:16 +1100,2014-11-17 06:23:16 +1100,concept stores,Delete,
+155,Shanghainese,2014-11-17 06:23:33 +1100,2014-11-17 06:23:33 +1100,Shanghainese,Cuisine,Shanghainese
+156,Convenience Stores / Milk Bars,2014-11-17 06:24:52 +1100,2014-11-17 06:24:52 +1100,convenience store,Delete,
+157,Cantonese,2014-11-17 06:25:24 +1100,2014-11-17 06:25:24 +1100,Cantonese,Cuisine,Cantonese
+158,Hot Dogs,2014-11-17 08:21:43 +1100,2014-11-17 08:21:43 +1100,hot dogs,Dish_type,hot dogs
+159,Greengrocers,2014-11-17 08:37:52 +1100,2014-11-17 08:37:52 +1100,greengrocer,Delete,
+160,Brasserie,2014-11-17 08:38:01 +1100,2014-11-17 08:38:01 +1100,brasserie,Venue_type_1,brasserie
+161,"Ice Cream, Gelato & Frozen Yoghurt",2014-11-17 08:39:15 +1100,2014-11-17 08:39:15 +1100,frozen dessert,Dish_type,frozen dessert
+162,Antiques,2014-11-17 08:42:19 +1100,2014-11-17 08:42:19 +1100,antiques,Delete,
+163,Kiosks,2014-11-17 08:44:02 +1100,2014-11-17 08:44:02 +1100,kiosks,Venue_type_0,kiosks
+164,Cambodian,2014-11-17 08:44:30 +1100,2014-11-17 08:44:30 +1100,Cambodian,Cuisine,Cambodian
+165,Health Food,2014-11-17 08:44:46 +1100,2014-11-17 08:44:46 +1100,health food,Dietary_type,health food
+166,Cake Shop & Patisserie Shops,2014-11-17 08:44:50 +1100,2014-11-17 08:44:50 +1100,patisserie,Venue_type_1,patisserie
+167,South African Restaurants ,2014-11-17 08:46:24 +1100,2014-11-17 08:46:24 +1100,South African,Cuisine,South African
+168,Cuban,2014-11-17 08:55:20 +1100,2014-11-17 08:55:20 +1100,Cuban,Cuisine,Cuban
+169,Adult Entertainment,2014-11-17 08:56:27 +1100,2014-11-17 08:56:27 +1100,adult entertainment,Feature_1,adult entertainment
+170,Irish,2014-11-17 08:59:25 +1100,2014-11-17 08:59:25 +1100,Irish,Cuisine,Irish
+171,Local Flavour,2014-11-17 09:01:16 +1100,2014-11-17 09:01:16 +1100,local flavour,Delete,
+172,Tea Rooms,2014-11-17 09:02:12 +1100,2014-11-17 09:02:12 +1100,tea room,Venue_type_1,tea room
+173,Beer Bars,2014-11-17 09:05:41 +1100,2014-11-17 09:05:41 +1100,beer bar,Venue_type_2,beer bar
+174,Laotian,2014-11-17 09:08:12 +1100,2014-11-17 09:08:12 +1100,Laotian,Cuisine,Laotian
+175,Czech,2014-11-17 09:10:09 +1100,2014-11-17 09:10:09 +1100,Czech,Cuisine,Czech
+176,Slovakian,2014-11-17 09:10:09 +1100,2014-11-17 09:10:09 +1100,Slovakian,Cuisine,Slovakian
+177,Potatoes,2014-11-17 09:12:18 +1100,2014-11-17 09:12:18 +1100,potatoes,Dish_type,potatoes
+178,Karaoke,2014-11-17 09:15:19 +1100,2014-11-17 09:15:19 +1100,karaoke,Feature_1,karaoke
+179,Arabic,2014-11-17 09:16:21 +1100,2014-11-17 09:16:21 +1100,Arabic,Cuisine,Arabic
+180,Cookery Schools,2014-11-17 09:16:54 +1100,2014-11-17 09:16:54 +1100,cooking classes,Delete,
+181,Szechuan,2014-11-17 09:20:12 +1100,2014-11-17 09:20:12 +1100,Szechuan,Cuisine,Szechuan
+182,Burmese,2014-11-17 09:21:47 +1100,2014-11-17 09:21:47 +1100,Burmese,Cuisine,Burmese
+183,Halal,2014-11-17 09:23:12 +1100,2014-11-17 09:23:12 +1100,halal,Dietary_type,halal
+184,Yugoslav,2014-11-17 09:24:22 +1100,2014-11-17 09:24:22 +1100,Yugoslav,Cuisine,Yugoslav
+185,Ethnic Food,2014-11-17 19:01:12 +1100,2014-11-17 19:01:12 +1100,ethnic food,Delete,
+186,Seafood Markets,2014-11-17 19:01:32 +1100,2014-11-17 19:01:32 +1100,seafood shop,Delete,
+187,Clubs,2014-11-17 19:03:25 +1100,2014-11-17 19:03:25 +1100,bar,Venue_type_2,bar
+188,Scandinavian,2014-11-17 19:03:36 +1100,2014-11-17 19:03:36 +1100,Scandinavian,Cuisine,Scandinavian
+189,Shopping,2014-11-17 19:03:40 +1100,2014-11-17 19:03:40 +1100,shopping,Delete,
+190,Laos Restaurants ,2014-11-17 19:10:02 +1100,2014-11-17 19:10:02 +1100,Laotian,Cuisine,Laotian
+191,Food Courts,2014-11-17 19:10:05 +1100,2014-11-17 19:10:05 +1100,food court,Venue_type_prefix,food court
+192,Barbers,2014-11-17 19:11:35 +1100,2014-11-17 19:11:35 +1100,barbers,Delete,
+193,Yelp Events,2014-11-17 19:13:03 +1100,2014-11-17 19:13:03 +1100,yelp events,Delete,
+194,Office Equipment,2014-11-17 19:13:19 +1100,2014-11-17 19:13:19 +1100,office equipment,Delete,
+195,Farmers' Market,2014-11-17 19:14:34 +1100,2014-11-17 19:14:34 +1100,farmers' market,Venue_type_3,farmers' market
+196,Yoga,2014-11-17 20:06:44 +1100,2014-11-17 20:06:44 +1100,yoga,Delete,
+197,Live & Raw Food,2014-11-17 20:06:44 +1100,2014-11-17 20:06:44 +1100,live & raw food,Dish_type,live & raw food
+198,Shopping Centers,2014-11-17 20:08:40 +1100,2014-11-17 20:08:40 +1100,shopping centre,Venue_type_0,shopping centre
+199,Outlet Stores,2014-11-17 20:08:40 +1100,2014-11-17 20:08:40 +1100,outlet stores,Delete,
+200,Organic Shops,2014-11-17 20:09:10 +1100,2014-11-17 20:09:10 +1100,organic shop,Venue_type_3,organic shop
+201,Buddhist Temples,2014-11-17 20:20:42 +1100,2014-11-17 20:20:42 +1100,buddhist temples,Delete,
+202,Persian & Iranian,2014-11-17 20:21:25 +1100,2014-11-17 20:21:25 +1100,Persian/Iranian,Cuisine,Persian/Iranian
+203,Mamak,2014-11-17 20:26:58 +1100,2014-11-17 20:26:58 +1100,mamak,Delete,
+204,Caterers,2014-11-17 20:40:15 +1100,2014-11-17 20:40:15 +1100,catering,Delete,
+205,Nyonya,2014-11-17 21:48:41 +1100,2014-11-17 21:48:41 +1100,nyonya,Delete,
+206,Teppanyaki,2014-11-17 21:50:03 +1100,2014-11-17 21:50:03 +1100,teppanyaki,Dish_type,teppanyaki
+207,Leisure Centres,2014-11-17 21:57:52 +1100,2014-11-17 21:57:52 +1100,leisure centres,Delete,
+208,Personal Shopper,2014-11-17 21:59:58 +1100,2014-11-17 21:59:58 +1100,personal shopper,Delete,
+209,Singaporean,2014-11-17 22:06:54 +1100,2014-11-17 22:06:54 +1100,Singaporean,Cuisine,Singaporean
+210,Nightlife,2014-11-17 22:14:30 +1100,2014-11-17 22:14:30 +1100,nightlife,Delete,
+211,Irish Pubs,2014-11-17 22:17:18 +1100,2014-11-17 22:17:18 +1100,Irish pub,Venue_type_0,Irish pub
+212,Theatres,2014-11-17 22:20:34 +1100,2014-11-17 22:20:34 +1100,a theatre,Feature_1,a theatre
+213,Bikes,2014-11-17 22:25:16 +1100,2014-11-17 22:25:16 +1100,bikes,Delete,
+214,Flowers & Gifts,2014-11-17 22:35:11 +1100,2014-11-17 22:35:11 +1100,a flower & gift shop,Delete,
+215,Newsagents,2014-11-17 22:35:11 +1100,2014-11-17 22:35:11 +1100,newsagents,Delete,
+216,Casinos,2014-11-17 23:51:26 +1100,2014-11-17 23:51:26 +1100,casinos,Delete,
+217,Food Trucks,2014-11-17 23:52:21 +1100,2014-11-17 23:52:21 +1100,food truck,Venue_type_0,food truck
+218,ファーストフード,2014-11-17 23:53:32 +1100,2014-11-17 23:53:32 +1100,ファーストフード,Delete,
+219,カフェ,2014-11-17 23:53:32 +1100,2014-11-17 23:53:32 +1100,カフェ,Delete,
+220,ケータリング,2014-11-17 23:53:32 +1100,2014-11-17 23:53:32 +1100,ケータリング,Delete,
+221,Cabarets,2014-11-17 23:57:04 +1100,2014-11-17 23:57:04 +1100,cabaret,Feature_1,cabaret
+222,Chocolate & Chocolatiers,2014-11-17 23:59:05 +1100,2014-11-17 23:59:05 +1100,chocolateria,Venue_type_3,chocolateria
+223,Ethopian,2014-11-18 00:32:14 +1100,2014-11-18 00:32:14 +1100,Ethiopian,Cuisine,Ethiopian
+224,Churches,2014-11-18 00:39:40 +1100,2014-11-18 00:39:40 +1100,churches,Delete,
+225,B&Bs,2014-11-18 00:39:40 +1100,2014-11-18 00:39:40 +1100,b&bs,Delete,
+226,Cafeterias,2014-11-18 01:10:47 +1100,2014-11-18 01:10:47 +1100,cafe,Venue_type_1,cafe
+227,Internet Cafes,2014-11-18 01:11:03 +1100,2014-11-18 01:11:03 +1100,internet cafes,Delete,
+228,Boat Charters,2014-11-18 01:18:19 +1100,2014-11-18 01:18:19 +1100,on a boat,Venue_location,on a boat
+229,Travel Agents,2014-11-18 01:18:19 +1100,2014-11-18 01:18:19 +1100,travel agents,Delete,
+230,Arts & Crafts,2014-11-18 01:29:00 +1100,2014-11-18 01:29:00 +1100,arts & crafts,Delete,
+231,Marketing,2014-11-18 02:03:24 +1100,2014-11-18 02:03:24 +1100,marketing,Delete,
+232,Wholesale,2014-11-18 02:05:58 +1100,2014-11-18 02:05:58 +1100,wholesale,Delete,
+233,Cinemas,2014-11-18 02:21:42 +1100,2014-11-18 02:21:42 +1100,cinema,Venue_type_3,cinema
+234,イタリアン,2014-11-18 02:40:50 +1100,2014-11-18 02:40:50 +1100,イタリアン,Delete,
+235,グルテンフリー,2014-11-18 02:40:50 +1100,2014-11-18 02:40:50 +1100,グルテンフリー,Delete,
+236,Art Galleries,2014-11-18 03:24:22 +1100,2014-11-18 03:24:22 +1100,art gallery,Venue_type_3,art gallery
+237,Herbs & Spices,2014-11-18 03:24:36 +1100,2014-11-18 03:24:36 +1100,herbs & spices,Delete,
+238,Tennis,2014-11-18 03:33:13 +1100,2014-11-18 03:33:13 +1100,tennis,Delete,
+239,Appliances,2014-11-18 03:42:26 +1100,2014-11-18 03:42:26 +1100,appliances,Delete,
+240,Car Wash,2014-11-18 03:45:55 +1100,2014-11-18 03:45:55 +1100,car wash,Delete,
+241,Fitness & Instruction,2014-11-18 03:47:52 +1100,2014-11-18 03:47:52 +1100,fitness & instruction,Delete,
+242,Sports Clubs,2014-11-18 03:55:09 +1100,2014-11-18 03:55:09 +1100,sports clubs,Delete,
+243,DIY Food,2014-11-18 03:56:46 +1100,2014-11-18 03:56:46 +1100,DIY,Dietary_type,DIY
+244,Print Media & Publications,2014-11-18 04:03:00 +1100,2014-11-18 04:03:00 +1100,print media & publications,Delete,
+245,スーパー,2014-11-18 04:09:51 +1100,2014-11-18 04:09:51 +1100,スーパー,Delete,
+246,オーガニックストア,2014-11-18 04:09:51 +1100,2014-11-18 04:09:51 +1100,オーガニックストア,Delete,
+247,健康食品,2014-11-18 04:09:51 +1100,2014-11-18 04:09:51 +1100,健康��品,Delete,
+248,Women's Clothing,2014-11-18 04:11:36 +1100,2014-11-18 04:11:36 +1100,women's clothing,Delete,
+249,Children's Clothing,2014-11-18 04:11:37 +1100,2014-11-18 04:11:37 +1100,children's clothing,Delete,
+250,Fashion,2014-11-18 04:23:48 +1100,2014-11-18 04:23:48 +1100,fashion,Delete,
+251,Hungarian,2014-11-18 06:57:49 +1100,2014-11-18 06:57:49 +1100,Hungarian,Cuisine,Hungarian
+252,Driving Schools,2014-11-18 06:58:21 +1100,2014-11-18 06:58:21 +1100,driving schools,Delete,
+253,Beaches,2014-11-18 07:01:01 +1100,2014-11-18 07:01:01 +1100,beaches,Delete,

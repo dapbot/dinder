@@ -3,17 +3,18 @@
 # Table name: photos
 #
 #  id                    :integer          not null, primary key
-#  yelp_restaurant_id    :integer
+#  photographable_id     :integer
 #  low_resolution_url    :text
 #  medium_resolution_url :text
 #  high_resolution_url   :text
 #  created_at            :datetime
 #  updated_at            :datetime
 #  source                :string(255)
+#  photographable_type   :string(255)
 #
 
 class Photo < ActiveRecord::Base
-  belongs_to :yelp_restaurant
+  belongs_to :photographed, polymorphic: true
 
   def self.from_source(source)
     where("source = '#{source}'")

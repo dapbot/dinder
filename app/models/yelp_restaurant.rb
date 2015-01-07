@@ -30,9 +30,11 @@
 #  instagram_photos_fetched_at :datetime
 #  dinder_score                :float
 #  yelp_photos_last_fetched_at :datetime
+#  restaurant_id               :integer
 #
 
 class YelpRestaurant < ActiveRecord::Base
+  belongs_to :restaurant
   
   START_LAT = -33.923113
   END_LAT = -33.816499
@@ -47,7 +49,7 @@ class YelpRestaurant < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
-  has_many :photos
+  has_many :photos, as: :photographable
   has_many :clicks
 
   def best_photos
@@ -84,7 +86,7 @@ class YelpRestaurant < ActiveRecord::Base
 
   def description
     result = ""
-    result += tags.map(&:name).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ") + (tags.length > 0 ? ", " : "")
+    result += tags.select{|t| t.ignore == false}.map(&:clean_name).uniq.map(&:titleize).map{|r| r.gsub(/\n/,"")}.map(&:strip).join(", ") + (tags.length > 0 ? ", " : "")
     result += good_for_groups ? "Good for groups, " : ""
     result += noise_level && noise_level > 2 ? "Noisy, " : "" 
     result += ambience.nil? ? "" : ambience + ", "
@@ -105,6 +107,10 @@ class YelpRestaurant < ActiveRecord::Base
     else
       "red"
     end
+  end
+
+  def address
+    address_street + ", " + address_suburb + ", " + address_state + " " + address_post_code
   end
 
   def paramaterised_address

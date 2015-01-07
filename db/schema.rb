@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141202051053) do
+ActiveRecord::Schema.define(version: 20150107071513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20141202051053) do
     t.integer  "user_id"
   end
 
+  create_table "instagram_photos", force: true do |t|
+    t.integer  "yelp_restaurant_id"
+    t.text     "low_resolution_url"
+    t.text     "medium_resolution_url"
+    t.text     "high_resolution_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "opening_periods", force: true do |t|
     t.integer  "openable_id"
     t.integer  "day"
@@ -48,13 +57,14 @@ ActiveRecord::Schema.define(version: 20141202051053) do
   end
 
   create_table "photos", force: true do |t|
-    t.integer  "yelp_restaurant_id"
+    t.integer  "photographable_id"
     t.text     "low_resolution_url"
     t.text     "medium_resolution_url"
     t.text     "high_resolution_url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source"
+    t.string   "photographable_type"
   end
 
   create_table "restaurant_tags", force: true do |t|
@@ -63,6 +73,31 @@ ActiveRecord::Schema.define(version: 20141202051053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "taggable_type"
+  end
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "phone_number"
+    t.text     "website"
+    t.float    "dinder_score"
+    t.integer  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "searches", force: true do |t|
+    t.boolean  "open_now"
+    t.datetime "open_at"
+    t.string   "lat_lng"
+    t.integer  "cheaper_than"
+    t.integer  "fancier_than"
+    t.text     "not_cuisines", default: [], array: true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "shortlistings", force: true do |t|
@@ -76,6 +111,9 @@ ActiveRecord::Schema.define(version: 20141202051053) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "clean_name"
+    t.string   "tag_type"
+    t.boolean  "ignore",     default: false
   end
 
   create_table "unwanted_restaurant_tags", force: true do |t|
@@ -104,6 +142,9 @@ ActiveRecord::Schema.define(version: 20141202051053) do
     t.integer  "urbanspoon_ranking"
     t.string   "yelp_business_id"
     t.datetime "yelp_last_fetched"
+    t.integer  "review_count"
+    t.integer  "vote_count"
+    t.integer  "restaurant_id"
   end
 
   create_table "users", force: true do |t|
@@ -148,6 +189,7 @@ ActiveRecord::Schema.define(version: 20141202051053) do
     t.datetime "instagram_photos_fetched_at"
     t.float    "dinder_score"
     t.datetime "yelp_photos_last_fetched_at"
+    t.integer  "restaurant_id"
   end
 
 end

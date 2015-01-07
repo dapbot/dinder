@@ -39,7 +39,7 @@
     <% end %>
     <h1>What's Cooking?</h1>
     <% if @search && action_name != "shortlistings" %>
-      <a href="<%= shortlistings_dinder_search_path(@search) %>" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all" id="shortlist_count"><%= @search.shortlisted_restaurants.length %></a>
+      <a href="<%= shortlistings_dinder_search_path(@search) %>" data-role="button" data-icon="star" class="ui-btn-right ui-btn-corner-all <%= @search.shortlisted_restaurants.length > 0 ? 'highlighted' : '' %>" id="shortlist_count"><%= @search.shortlisted_restaurants.length %></a>
     <% end %>
   </div>
 

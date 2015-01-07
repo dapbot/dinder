@@ -30,6 +30,7 @@
 #  instagram_photos_fetched_at :datetime
 #  dinder_score                :float
 #  yelp_photos_last_fetched_at :datetime
+#  restaurant_id               :integer
 #
 
 require 'test_helper'

@@ -322,3 +322,12 @@ body {
   text-align: center;
   padding: 40px;
 }
+
+#shortlist_count {
+  border: 2px solid transparent;
+}
+
+#shortlist_count.highlighted {
+  border: 2px solid #FFB00F;
+  background-color: #594626;
+}

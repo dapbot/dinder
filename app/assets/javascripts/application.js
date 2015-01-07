@@ -68,6 +68,7 @@ function setup_card_css_and_javascript() {
     }
   });
 
+
   $(".call").on('click', function(){
     recordClick("Call", $(this).attr("id").slice(1));
   })
@@ -151,7 +152,7 @@ $(function() {
           dataType: "json"
         });    
         shortlist.push(cards[current_card]);
-        $("#shortlist_count").html(shortlist.length);    
+        $("#shortlist_count").html(shortlist.length).addClass("highlighted");    
         successful_swipe = true;
         recordClick("Shortlisted Restaurant by " + (swiped_restaurant ? "SWIPE" : "CLICK"), $(cards[current_card]).attr("id"));
       }

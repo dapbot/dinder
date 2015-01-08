@@ -1,0 +1,108 @@
+<%= form_for @restaurant, :html => { :class => "form-horizontal restaurant" } do |f| %>
+
+    <% if @restaurant.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @restaurant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :suburb, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :suburb, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:suburb]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :address, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:address]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :latitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :latitude, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:latitude]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :longitude, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :longitude, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:longitude]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :dinder_score, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :dinder_score, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:dinder_score]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:price]) %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :phone_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone_number, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:phone_number]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :website, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :website, :class => 'form-control' %>
+    </div>
+    <%= error_span(@restaurant[:website]) %>
+  </div>
+
+  <%= f.label :photos, :class => 'control-label' %>
+  <div class="photos">
+
+    <% @restaurant.photos.each do |photo| %>
+      <div class="form_photo">
+        <div class="left">
+          <%= image_tag photo.low_resolution_url %>
+        </div>
+        <div class="left">
+          <%= f.radio_button :photo_1_id, photo.id %> Photo 1<br>
+          <%= f.radio_button :photo_2_id, photo.id %> Photo 2<br>
+          <%= f.radio_button :photo_3_id, photo.id %> Photo 3<br>
+          <%= check_box_tag "ignore_photos[]", photo.id, photo.ignore %> Hide
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            restaurants_path, :class => 'btn btn-default' %>
+
+<% end %>

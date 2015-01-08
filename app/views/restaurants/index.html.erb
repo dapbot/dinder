@@ -1,0 +1,50 @@
+<%- model_class = Restaurant -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <%= form_tag restaurants_path, :method => 'get', :id => "restaurants_search" do %>
+<!--     <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p> -->
+    <%= select_tag(:search_suburb, options_for_select((Restaurant.all.map(&:suburb) - [nil]).uniq.sort.map{|s| [s, s]}, params[:search_suburb]), prompt: "Select Suburb", id: 'suburb_select' ) %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <%= will_paginate @products %>
+  <% end %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:suburb) %></th>
+      <th><%= model_class.human_attribute_name(:dinder_score) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.id %></td>
+        <td><b><%= restaurant.name %></b><br><div class="small"><%= restaurant.address %></div></td>
+        <td><%= restaurant.suburb %></td>
+        <td><%= restaurant.dinder_score %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_restaurant_path(restaurant), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      restaurant_path(restaurant),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+          <%= restaurant.website.blank? ? "" : (link_to 'Website', restaurant.website, class: 'btn btn-xs btn-default') %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_restaurant_path,
+            :class => 'btn btn-primary' %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :restaurants
+
   devise_for :users, controllers: {registrations: 'registrations'}
   resources :urbanspoon_restaurants
 
@@ -13,7 +15,6 @@ Rails.application.routes.draw do
   resources :restaurant_tags, :only => :index
   resources :tags, :only => :index
   resources :opening_periods, :only => :index
-  resources :restaurants, :only => :index
   resources :yelp_restaurants do
     collection do
       post 'import'

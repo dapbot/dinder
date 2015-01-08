@@ -19,4 +19,11 @@ class Photo < ActiveRecord::Base
   def self.from_source(source)
     where("source = '#{source}'")
   end
+
+  def self.not_hidden
+    where(ignore: false)
+  end
+
+  default_scope {order("ignore ASC, source DESC")}
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107071513) do
+ActiveRecord::Schema.define(version: 20150108043656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150107071513) do
     t.datetime "updated_at"
     t.string   "source"
     t.string   "photographable_type"
+    t.boolean  "ignore",                default: false
   end
 
   create_table "restaurant_tags", force: true do |t|
@@ -86,6 +87,10 @@ ActiveRecord::Schema.define(version: 20150107071513) do
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "suburb"
+    t.integer  "photo_1_id"
+    t.integer  "photo_2_id"
+    t.integer  "photo_3_id"
   end
 
   create_table "searches", force: true do |t|
@@ -145,6 +150,9 @@ ActiveRecord::Schema.define(version: 20150107071513) do
     t.integer  "review_count"
     t.integer  "vote_count"
     t.integer  "restaurant_id"
+    t.integer  "photo_1_id"
+    t.integer  "photo_2_id"
+    t.integer  "photo_3_id"
   end
 
   create_table "users", force: true do |t|
@@ -190,6 +198,9 @@ ActiveRecord::Schema.define(version: 20150107071513) do
     t.float    "dinder_score"
     t.datetime "yelp_photos_last_fetched_at"
     t.integer  "restaurant_id"
+    t.integer  "photo_1_id"
+    t.integer  "photo_2_id"
+    t.integer  "photo_3_id"
   end
 
 end

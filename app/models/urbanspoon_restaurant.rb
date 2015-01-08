@@ -38,6 +38,11 @@ class UrbanspoonRestaurant < ActiveRecord::Base
 
   has_many :photos, as: :photographable
 
+  belongs_to :photo_1, :class_name => 'Photo', :foreign_key => 'photo_1_id'
+  belongs_to :photo_2, :class_name => 'Photo', :foreign_key => 'photo_2_id'
+  belongs_to :photo_3, :class_name => 'Photo', :foreign_key => 'photo_3_id'
+
+
   def post_code
     postcode = address.match(/[0-9]{4}/)
     postcode = postcode.nil? ? "" : postcode[-1]

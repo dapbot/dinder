@@ -35,6 +35,9 @@
 
 class YelpRestaurant < ActiveRecord::Base
   belongs_to :restaurant
+  belongs_to :photo_1, :class_name => 'Photo', :foreign_key => 'photo_1_id'
+  belongs_to :photo_2, :class_name => 'Photo', :foreign_key => 'photo_2_id'
+  belongs_to :photo_3, :class_name => 'Photo', :foreign_key => 'photo_3_id'
   
   START_LAT = -33.923113
   END_LAT = -33.816499
@@ -53,7 +56,8 @@ class YelpRestaurant < ActiveRecord::Base
   has_many :clicks
 
   def best_photos
-    photos.from_source("Yelp").length > 5 ? photos.from_source("Yelp") : photos.from_source("Yelp") + photos.from_source("Instagram")
+    photos_to_return = [self.photo_1, self.photo_2, self.photo_3] - [nil]
+    photos_to_return += photos.not_hidden.where("id != #{self.photo_1_id || -1} and id != #{self.photo_2_id || -1} and id != #{self.photo_3_id || -1}")
   end
 
   def open_state
@@ -111,6 +115,10 @@ class YelpRestaurant < ActiveRecord::Base
 
   def address
     address_street + ", " + address_suburb + ", " + address_state + " " + address_post_code
+  end
+
+  def suburb
+    address_suburb
   end
 
   def paramaterised_address

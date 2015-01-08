@@ -16,7 +16,7 @@
 //= require jquery.mobile
 //= require swing.min
 //= require jquery.swipebox.min
-//= require_tree .
+//= require jquery.cookie
 
 function getGeoLocation() {
   navigator.geolocation.getCurrentPosition(setGeoCookie);

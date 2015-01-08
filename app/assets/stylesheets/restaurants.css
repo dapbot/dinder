@@ -1,0 +1,28 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+ */
+
+body {
+  padding: 30px;
+}
+
+.clear {
+  clear:both;
+}
+
+.left {
+  float:left;
+}
+
+.form_photo {
+  margin-top: 5px;
+  margin-right: 5px;
+  float:left;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.form_photo img {
+  margin-right: 5px;
+}

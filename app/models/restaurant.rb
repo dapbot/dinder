@@ -19,15 +19,22 @@ class Restaurant < ActiveRecord::Base
   has_many :yelp_restaurants, dependent: :nullify
   has_many :urbanspoon_restaurants, dependent: :nullify
 
+  belongs_to :photo_1, :class_name => 'Photo', :foreign_key => 'photo_1_id'
+  belongs_to :photo_2, :class_name => 'Photo', :foreign_key => 'photo_2_id'
+  belongs_to :photo_3, :class_name => 'Photo', :foreign_key => 'photo_3_id'
+
   def populate_data
     self.name = (primary_us || primary_yelp).name
     self.address = (primary_us || primary_yelp).address
+    self.suburb = (primary_us || primary_yelp).suburb
     self.latitude = (primary_us || primary_yelp).latitude
     self.longitude = (primary_us || primary_yelp).longitude
     self.phone_number = (primary_us || primary_yelp).phone_number
     self.website = (primary_us || primary_yelp).website
     prices = ((primary_us && primary_us.price ? [primary_us.price] : []) + (primary_yelp && primary_yelp.price ? [primary_yelp.price] : []))
     self.price = (prices.sum / prices.length).floor if prices.length > 0
+    #NEED TO CHANGE NEXT LINE WHEN DINDER SCORES HAVE BEEN CALCULATED
+    self.dinder_score = has_yelp ? primary_yelp.dinder_score : 0
     self.save
   end
 
@@ -49,6 +56,38 @@ class Restaurant < ActiveRecord::Base
 
   def tags
     Tag.where("tags.id IN ((SELECT tag_id FROM restaurant_tags WHERE taggable_type = 'YelpRestaurant' and taggable_id IN (SELECT id FROM yelp_restaurants WHERE restaurant_id = #{self.id})) UNION ALL (SELECT tag_id FROM restaurant_tags WHERE taggable_type = 'UrbanspoonRestaurant' and taggable_id IN (SELECT id FROM urbanspoon_restaurants WHERE restaurant_id = #{self.id})))")
+  end
+
+  def photos
+    Photo.where("(photographable_type = 'YelpRestaurant' and photographable_id IN (SELECT id FROM yelp_restaurants WHERE restaurant_id = #{self.id})) OR (photographable_type = 'UrbanspoonRestaurant' and photographable_id IN (SELECT id FROM urbanspoon_restaurants WHERE restaurant_id = #{self.id}))")
+  end
+
+  def photo_1_id=(photo)
+    super(photo)
+    child_restaurants.each do |child|
+      child.photo_1_id = self.photo_1_id
+      child.save
+    end
+  end
+
+  def photo_2_id=(photo)
+    super(photo)
+    child_restaurants.each do |child|
+      child.photo_2_id = self.photo_2_id
+      child.save
+    end
+  end
+
+  def photo_3_id=(photo)
+    super(photo)
+    child_restaurants.each do |child|
+      child.photo_3_id = self.photo_3_id
+      child.save
+    end
+  end
+
+  def child_restaurants
+    urbanspoon_restaurants + yelp_restaurants
   end
 
   def self.to_csv
